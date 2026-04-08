@@ -5,103 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apresentação Lean 3D - Produção de Caneca</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #e0e5ec, #f4f4f9); 
-            padding: 20px; 
-            color: #333; 
-            overflow-x: hidden;
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0e5ec, #f4f4f9);
+            color: #333;
         }
-        .slide { 
-            background: rgba(255, 255, 255, 0.95); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15), inset 0 2px 5px rgba(255,255,255,1); 
-            max-width: 1000px; 
-            margin: 20px auto; 
-            backdrop-filter: blur(10px);
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
         }
-        h1, h2 { 
-            color: #2c3e50; 
-            text-align: center; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1); 
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            padding: 40px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.95);
         }
-        
-        .legend { 
-            display: flex; 
-            justify-content: space-around; 
-            margin-bottom: 40px; 
-            padding: 20px; 
-            background: #f8f9fa; 
-            border-radius: 12px; 
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+            transform: translateY(-50%);
+        }
+
+        .nav-button {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .nav-button:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-button.left {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .nav-button.right {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .legend {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
             box-shadow: inset 0 3px 6px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
+            width: 80%;
+            max-width: 800px;
         }
         .legend-item { display: flex; align-items: center; font-weight: bold; }
-        .box { 
+        .box {
             width: 30px; height: 30px; margin-right: 15px; border-radius: 6px;
             box-shadow: 3px 3px 6px rgba(0,0,0,0.2), inset -2px -2px 5px rgba(0,0,0,0.1);
         }
         .green { background: linear-gradient(145deg, #66bb6a, #43a047); }
         .yellow { background: linear-gradient(145deg, #ffee58, #fbc02d); }
         .red { background: linear-gradient(145deg, #ef5350, #e53935); }
-        
+
         .flowchart-container {
-            perspective: 1200px; /* Cria o ambiente 3D */
+            perspective: 1200px;
             padding: 50px 0;
             display: flex;
             justify-content: center;
         }
 
-        .flowchart { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 35px; 
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
             transform-style: preserve-3d;
-            transform: rotateX(15deg); /* Inclinação 3D do plano inteiro */
+            transform: rotateX(15deg);
         }
 
-        .row { 
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             transform-style: preserve-3d;
         }
 
-        /* Formatação das Caixas (Etapas) */
-        .node { 
-            padding: 15px 30px; 
-            border-radius: 10px; 
-            font-weight: bold; 
-            text-align: center; 
-            min-width: 200px; 
+        .node {
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 200px;
             color: #fff;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             transform: translateZ(30px);
-            box-shadow: 
-                0 15px 25px rgba(0,0,0,0.25), 
+            box-shadow:
+                0 15px 25px rgba(0,0,0,0.25),
                 inset 0 2px 0 rgba(255,255,255,0.4),
                 0 0 0 1px rgba(0,0,0,0.1);
         }
 
         .node.yellow { color: #333; text-shadow: none; }
 
-        /* Efeito de interatividade 3D (Hover) */
         .node:hover {
             transform: translateZ(60px) scale(1.1);
-            box-shadow: 
-                0 25px 40px rgba(0,0,0,0.35), 
+            box-shadow:
+                0 25px 40px rgba(0,0,0,0.35),
                 inset 0 3px 0 rgba(255,255,255,0.6),
                 0 0 0 1px rgba(0,0,0,0.1);
             cursor: pointer;
             z-index: 10;
         }
-
-        /* Formatação do Losango (Decisão) */
         .diamond-container {
             position: relative;
             width: 130px; height: 130px;
@@ -117,20 +167,20 @@
             z-index: 10;
         }
 
-        .diamond { 
-            width: 100%; height: 100%; 
+        .diamond {
+            width: 100%; height: 100%;
             background: linear-gradient(145deg, #ffee58, #fbc02d);
-            transform: rotateZ(45deg); 
+            transform: rotateZ(45deg);
             display: flex; align-items: center; justify-content: center;
             border-radius: 15px;
-            box-shadow: 
-                10px 10px 20px rgba(0,0,0,0.25), 
+            box-shadow:
+                10px 10px 20px rgba(0,0,0,0.25),
                 inset 3px 3px 8px rgba(255,255,255,0.5);
             position: absolute;
             top: 0; left: 0;
         }
 
-        .diamond-text { 
+        .diamond-text {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
@@ -141,8 +191,6 @@
             width: 100%;
             z-index: 2;
         }
-
-        /* Conectores 3D (Setas) */
         .connector {
             background: linear-gradient(90deg, #444, #111);
             position: relative;
@@ -150,29 +198,27 @@
             transform: translateZ(15px);
         }
 
-        .arrow-down { 
-            width: 8px; height: 45px; 
+        .arrow-down {
+            width: 8px; height: 45px;
             margin: -5px 0;
             border-radius: 4px;
         }
-        .arrow-down::after { 
-            content: ''; position: absolute; bottom: -14px; left: -9px; 
-            border-left: 13px solid transparent; border-right: 13px solid transparent; border-top: 18px solid #111; 
+        .arrow-down::after {
+            content: ''; position: absolute; bottom: -14px; left: -9px;
+            border-left: 13px solid transparent; border-right: 13px solid transparent; border-top: 18px solid #111;
             filter: drop-shadow(0 6px 3px rgba(0,0,0,0.4));
         }
 
-        .arrow-right { 
-            width: 70px; height: 8px; 
+        .arrow-right {
+            width: 70px; height: 8px;
             border-radius: 4px;
         }
-        .arrow-right::after { 
-            content: ''; position: absolute; right: -14px; top: -9px; 
-            border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 18px solid #111; 
+        .arrow-right::after {
+            content: ''; position: absolute; right: -14px; top: -9px;
+            border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 18px solid #111;
             filter: drop-shadow(6px 0 3px rgba(0,0,0,0.4));
         }
-
-        /* Rótulos Sim/Não flutuantes */
-        .path-label { 
+        .path-label {
             font-size: 15px; font-weight: 900; color: #2c3e50;
             background: rgba(255,255,255,0.9);
             padding: 3px 10px;
@@ -182,7 +228,6 @@
             z-index: 5;
         }
 
-        /* Animação de Levitação (Floating) */
         @keyframes float {
             0% { transform: translateY(0px) translateZ(30px); }
             50% { transform: translateY(-8px) translateZ(45px); }
@@ -192,91 +237,132 @@
         .node, .diamond-container {
             animation: float 5s ease-in-out infinite;
         }
-        
-        /* Atrasos diferentes para movimento orgânico */
+
         .node:nth-child(even) { animation-delay: 1s; }
         .node:nth-child(3n) { animation-delay: 2.5s; }
         .diamond-container { animation-delay: 1.5s; }
-        
-        /* Pausa a animação ao focar */
-        .node:hover, .diamond-container:hover { animation: none; }
 
+        .node:hover, .diamond-container:hover { animation: none; }
     </style>
 </head>
 <body>
 
-<div class="slide">
-    <h1>Fluxograma 3D: Caneca Personalizada</h1>
-    
-    <div class="legend">
-        <div class="legend-item"><div class="box green"></div> Agrega Valor ao Produto</div>
-        <div class="legend-item"><div class="box yellow"></div> Necessário p/ Processo</div>
-        <div class="legend-item"><div class="box red"></div> Desperdício / Retrabalho</div>
+<div class="presentation">
+    <div class="slide active">
+        <h1>Fluxograma 3D: Caneca Personalizada</h1>
+        <div class="legend">
+            <div class="legend-item"><div class="box green"></div> Agrega Valor ao Produto</div>
+            <div class="legend-item"><div class="box yellow"></div> Necessário p/ Processo</div>
+            <div class="legend-item"><div class="box red"></div> Desperdício / Retrabalho</div>
+        </div>
     </div>
 
-    <div class="flowchart-container">
-        <div class="flowchart">
-            <!-- Início -->
-            <div class="node yellow">Receber Pedido e Arte</div>
-            <div class="connector arrow-down"></div>
-            
-            <!-- Decisão 1 -->
-            <div class="row">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <div class="diamond-container">
-                        <div class="diamond"></div>
-                        <div class="diamond-text">Arte está ok?</div>
+    <div class="slide">
+        <div class="flowchart-container">
+            <div class="flowchart">
+                <div class="node yellow">Receber Pedido e Arte</div>
+                <div class="connector arrow-down"></div>
+                <div class="row">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="diamond-container">
+                            <div class="diamond"></div>
+                            <div class="diamond-text">Arte está ok?</div>
+                        </div>
+                        <span class="path-label" style="margin-top: 10px;">SIM</span>
                     </div>
-                    <span class="path-label" style="margin-top: 10px;">SIM</span>
-                </div>
-                
-                <div style="display: flex; align-items: center; position: relative;">
-                    <div class="connector arrow-right"></div>
-                    <span class="path-label" style="position: absolute; top: -35px; left: 15px;">NÃO</span>
-                </div>
-                
-                <div class="node red">Refazer Arte<br><small>(Retrabalho)</small></div>
-            </div>
-            
-            <div class="connector arrow-down"></div>
-
-            <!-- Produção -->
-            <div class="node green">Imprimir Arte<br><small>(Sublimação)</small></div>
-            <div class="connector arrow-down"></div>
-            <div class="node yellow">Aquecer Prensa</div>
-            <div class="connector arrow-down"></div>
-            <div class="node green">Prensagem Térmica</div>
-            <div class="connector arrow-down"></div>
-            <div class="node yellow">Esfriamento Natural</div>
-            <div class="connector arrow-down"></div>
-
-            <!-- Decisão 2 -->
-            <div class="row">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <div class="diamond-container">
-                        <div class="diamond"></div>
-                        <div class="diamond-text">Sem defeitos?</div>
+                    <div style="display: flex; align-items: center; position: relative;">
+                        <div class="connector arrow-right"></div>
+                        <span class="path-label" style="position: absolute; top: -35px; left: 15px;">NÃO</span>
                     </div>
-                    <span class="path-label" style="margin-top: 10px;">SIM</span>
+                    <div class="node red">Refazer Arte<br><small>(Retrabalho)</small></div>
                 </div>
-                
-                <div style="display: flex; align-items: center; position: relative;">
-                    <div class="connector arrow-right"></div>
-                    <span class="path-label" style="position: absolute; top: -35px; left: 15px;">NÃO</span>
-                </div>
-                
-                <div class="node red">Descarte<br><small>(Sucata)</small></div>
             </div>
-            
-            <div class="connector arrow-down"></div>
+        </div>
+    </div>
 
-            <!-- Finalização -->
-            <div class="node yellow">Embalar Caneca</div>
-            <div class="connector arrow-down"></div>
-            <div class="node yellow">Envio/Entrega ao Cliente</div>
+    <div class="slide">
+        <div class="flowchart-container">
+            <div class="flowchart">
+                <div class="node green">Imprimir Arte<br><small>(Sublimação)</small></div>
+                <div class="connector arrow-down"></div>
+                <div class="node yellow">Aquecer Prensa</div>
+                <div class="connector arrow-down"></div>
+                <div class="node green">Prensagem Térmica</div>
+                <div class="connector arrow-down"></div>
+                <div class="node yellow">Esfriamento Natural</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="flowchart-container">
+            <div class="flowchart">
+                <div class="row">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="diamond-container">
+                            <div class="diamond"></div>
+                            <div class="diamond-text">Sem defeitos?</div>
+                        </div>
+                        <span class="path-label" style="margin-top: 10px;">SIM</span>
+                    </div>
+                    <div style="display: flex; align-items: center; position: relative;">
+                        <div class="connector arrow-right"></div>
+                        <span class="path-label" style="position: absolute; top: -35px; left: 15px;">NÃO</span>
+                    </div>
+                    <div class="node red">Descarte<br><small>(Sucata)</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="flowchart-container">
+            <div class="flowchart">
+                <div class="node yellow">Embalar Caneca</div>
+                <div class="connector arrow-down"></div>
+                <div class="node yellow">Envio/Entrega ao Cliente</div>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="navigation">
+    <button class="nav-button left" id="prev">&#10094;</button>
+    <button class="nav-button right" id="next">&#10095;</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    function changeSlide(direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+            changeSlide(1);
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            changeSlide(-1);
+        }
+    });
+
+    document.getElementById('prev').addEventListener('click', () => changeSlide(-1));
+    document.getElementById('next').addEventListener('click', () => changeSlide(1));
+
+    showSlide(currentSlide);
+</script>
 
 </body>
 </html>
