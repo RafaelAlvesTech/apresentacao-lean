@@ -30,10 +30,12 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
-            padding: 40px;
+            padding: 20px;
             box-sizing: border-box;
             background: rgba(255, 255, 255, 0.95);
             pointer-events: none;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .slide.active {
@@ -42,66 +44,62 @@
             pointer-events: auto;
         }
         
-        .slide.scrollable {
-            justify-content: flex-start;
-            padding-top: 100px;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
         .navigation {
             position: fixed;
-            top: 50%;
-            width: 100%;
+            bottom: 20px;
+            right: 20px;
             display: flex;
-            justify-content: space-between;
+            gap: 10px;
             z-index: 100;
-            transform: translateY(-50%);
         }
 
         .nav-button {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
             border: none;
-            padding: 20px;
+            padding: 15px 20px;
             cursor: pointer;
-            font-size: 24px;
-            transition: background 0.3s;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
         }
 
         .nav-button:hover {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
 
-        .nav-button.left {
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-
-        .nav-button.right {
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-        }
-
-        h1, h2 {
+        h1 {
+            font-size: 2.5rem;
             color: #2c3e50;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
-            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
         .content-box {
             background: #f8f9fa;
             border-radius: 12px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 800px;
-            font-size: 1.2rem;
+            max-width: 900px;
+            width: 100%;
+            font-size: 1.1rem;
             line-height: 1.6;
-            text-align: left;
         }
 
         .content-box ul {
@@ -114,7 +112,7 @@
             padding: 15px;
             border-radius: 8px;
             background: #fff;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
             border-left: 6px solid #ccc;
         }
 
@@ -123,197 +121,145 @@
         .content-box li.red { border-left-color: #e53935; }
 
         .flowchart-container {
-            perspective: 1200px;
-            padding: 20px 0;
+            width: 100%;
             display: flex;
             justify-content: center;
-            transform-origin: top center;
+            padding: 20px 0;
         }
 
         .flowchart {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
-            transform-style: preserve-3d;
-            transform: rotateX(15deg);
+            gap: 20px;
+            width: 100%;
         }
 
         .row {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
-            transform-style: preserve-3d;
+            gap: 15px;
+            width: 100%;
         }
         
         .col {
             display: flex;
             flex-direction: column;
             align-items: center;
-            transform-style: preserve-3d;
-        }
-
-        .row-align {
-            display: flex;
-            align-items: center;
-            position: relative;
-            transform-style: preserve-3d;
+            gap: 10px;
         }
 
         .node {
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 10px;
             font-weight: bold;
             text-align: center;
-            min-width: 220px;
+            min-width: 180px;
             color: #fff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            transform: translateZ(30px);
-            box-shadow:
-                0 15px 25px rgba(0,0,0,0.25),
-                inset 0 2px 0 rgba(255,255,255,0.4),
-                0 0 0 1px rgba(0,0,0,0.1);
-            background: #900; /* Fallback */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
 
-        /* Novas Cores Lean */
-        .node.green { background: linear-gradient(145deg, #43a047, #2e7d32); color: white; }
-        .node.yellow { background: linear-gradient(145deg, #fbc02d, #f57f17); color: #333; text-shadow: none; }
-        .node.red { background: linear-gradient(145deg, #e53935, #c62828); color: white; }
-        .node.start, .node.end { background: linear-gradient(145deg, #455a64, #263238); color: white; border-radius: 30px; }
-
-        .node:hover {
-            transform: translateZ(60px) scale(1.1);
-            box-shadow:
-                0 25px 40px rgba(0,0,0,0.35),
-                inset 0 3px 0 rgba(255,255,255,0.6),
-                0 0 0 1px rgba(0,0,0,0.1);
-            cursor: pointer;
-            z-index: 10;
-        }
+        .node.green { background: linear-gradient(145deg, #43a047, #2e7d32); }
+        .node.yellow { background: linear-gradient(145deg, #fbc02d, #f57f17); color: #333; }
+        .node.red { background: linear-gradient(145deg, #e53935, #c62828); }
+        .node.start, .node.end { background: linear-gradient(145deg, #455a64, #263238); border-radius: 30px; }
 
         .diamond-container {
+            width: 100px; height: 100px;
             position: relative;
-            width: 140px; height: 140px;
-            margin: 0 30px;
-            transform-style: preserve-3d;
-            transform: translateZ(30px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .diamond-container:hover {
-            transform: translateZ(60px) scale(1.1);
-            cursor: pointer;
-            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
         }
 
         .diamond {
-            width: 100%; height: 100%;
-            background: #700;
-            transform: rotateZ(45deg);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 10px;
-            box-shadow:
-                10px 10px 20px rgba(0,0,0,0.25),
-                inset 3px 3px 8px rgba(255,255,255,0.2);
-            position: absolute;
-            top: 0; left: 0;
+            width: 80px; height: 80px;
+            background: #fbc02d;
+            transform: rotate(45deg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        
-        .diamond.yellow { background: linear-gradient(145deg, #fbc02d, #f57f17); }
 
         .diamond-text {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 13px;
+            font-size: 11px;
             font-weight: bold;
-            color: #fff;
+            color: #333;
             text-align: center;
-            width: 120%;
             z-index: 2;
         }
-        
-        .diamond-text.dark { color: #333; }
 
         .connector {
-            background: linear-gradient(90deg, #444, #111);
-            position: relative;
-            box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-            transform: translateZ(15px);
+            background: #444;
+            display: none; /* Hidden by default on mobile, shown on desktop */
         }
 
-        .arrow-down {
-            width: 6px; height: 35px;
-            margin: -2px 0;
-            border-radius: 3px;
-        }
-        .arrow-down::after {
-            content: ''; position: absolute; bottom: -12px; left: -8px;
-            border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 14px solid #111;
-            filter: drop-shadow(0 4px 2px rgba(0,0,0,0.4));
-        }
-
-        .arrow-right {
-            width: 60px; height: 6px;
-            border-radius: 3px;
-        }
-        .arrow-right::after {
-            content: ''; position: absolute; right: -12px; top: -7px;
-            border-top: 11px solid transparent; border-bottom: 11px solid transparent; border-left: 14px solid #111;
-            filter: drop-shadow(4px 0 2px rgba(0,0,0,0.4));
-        }
-
-        .path-label {
-            font-size: 13px; font-weight: bold; color: #2c3e50;
-            background: rgba(255,255,255,0.9);
-            padding: 2px 8px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            transform: translateZ(40px);
-            z-index: 5;
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .content-box { font-size: 0.95rem; }
+            .node { min-width: 140px; font-size: 0.9rem; }
+            .row { flex-direction: column; }
+            .connector.arrow-right { display: none; }
+            .connector.arrow-down { display: block; width: 4px; height: 20px; }
+            
+            .navigation {
+                width: 100%;
+                bottom: 0;
+                right: 0;
+                justify-content: space-between;
+                padding: 10px 20px;
+                box-sizing: border-box;
+                background: rgba(255,255,255,0.8);
+            }
+            
+            .slide {
+                padding-bottom: 80px; /* Space for nav */
+            }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px) translateZ(30px); }
-            50% { transform: translateY(-5px) translateZ(40px); }
-            100% { transform: translateY(0px) translateZ(30px); }
+        @media (min-width: 769px) {
+            .connector.arrow-right {
+                display: block;
+                width: 40px; height: 6px;
+                position: relative;
+            }
+            .connector.arrow-right::after {
+                content: ''; position: absolute; right: -8px; top: -5px;
+                border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 10px solid #444;
+            }
+            
+            .connector.arrow-down {
+                display: block;
+                width: 6px; height: 30px;
+                position: relative;
+            }
+            .connector.arrow-down::after {
+                content: ''; position: absolute; bottom: -8px; left: -5px;
+                border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #444;
+            }
         }
 
-        .node, .diamond-container {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .node:nth-child(even) { animation-delay: 0.8s; }
-        .node:nth-child(3n) { animation-delay: 1.6s; }
-        .diamond-container { animation-delay: 1.2s; }
-
-        .node:hover, .diamond-container:hover { animation: none; }
-        
         .legend {
             display: flex;
-            justify-content: space-around;
-            margin-top: 0px;
-            margin-bottom: 30px;
-            padding: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 10px;
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 800px;
-            flex-shrink: 0;
         }
-        .legend-item { display: flex; align-items: center; font-weight: bold; font-size: 0.9rem; }
-        .box {
-            width: 20px; height: 20px; margin-right: 10px; border-radius: 4px;
-            box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
+        .legend-item { display: flex; align-items: center; font-size: 0.85rem; font-weight: bold; }
+        .box { width: 15px; height: 15px; margin-right: 8px; border-radius: 3px; }
         .box.green { background: #43a047; }
         .box.yellow { background: #fbc02d; }
         .box.red { background: #e53935; }
     </style>
+
 </head>
 <body>
 
@@ -360,72 +306,54 @@
 
     <!-- Lâmina 4: Completo Distribuído -->
     <div class="slide">
-        <h2 style="margin-bottom: 0;">Linha de Montagem Robotizada (Fluxo Completo)</h2>
+        <h2>Linha de Montagem Robotizada (Fluxo Completo)</h2>
         
-        <div class="legend" style="margin-top: 10px; margin-bottom: 0; padding: 10px; transform: scale(0.85);">
+        <div class="legend">
             <div class="legend-item"><div class="box green"></div> Transformação Robótica (Valor)</div>
             <div class="legend-item"><div class="box yellow"></div> Logística/Inspeção (Necessário)</div>
             <div class="legend-item"><div class="box red"></div> Retrabalho/Rejeição (Desperdício)</div>
         </div>
 
-        <div style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; padding-bottom: 40px;">
-            <div class="flowchart-container" style="transform: scale(0.95); transform-origin: center;">
-                <div class="flowchart" style="gap: 30px;">
-                    <!-- Row 1 Horizontal -->
-                    <div class="row" style="align-items: center; gap: 15px;">
-                        <div class="node start">Início:<br>Entrada de Chapas</div>
-                        <div class="connector arrow-right"></div>
-                        
-                        <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
-                            <div class="diamond-container" style="margin: 0;">
-                                <div class="diamond yellow"></div>
-                                <div class="diamond-text dark">Peças no<br>Padrão?</div>
-                            </div>
-                            <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
-                            
-                            <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
-                                <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não</span>
-                                <div class="connector arrow-down"></div>
-                                <div class="node red" style="margin-top: 10px;">Retorno ao Fornecedor</div>
-                                <div class="connector arrow-down" style="margin-top: 10px;"></div>
-                                <div class="node end" style="margin-top: 10px;">Fim (Descarte)</div>
-                            </div>
+        <div class="flowchart-container">
+            <div class="flowchart">
+                <!-- Row 1 Horizontal -->
+                <div class="row">
+                    <div class="node start">Início:<br>Entrada de Chapas</div>
+                    <div class="connector arrow-right"></div>
+                    
+                    <div class="col">
+                        <div class="diamond-container">
+                            <div class="diamond"></div>
+                            <div class="diamond-text">Peças no<br>Padrão?</div>
                         </div>
-
-                        <div class="connector arrow-right" style="margin-left: 25px;"></div>
-                        <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
-                        <div class="connector arrow-right"></div>
-                        <div class="node yellow">Transporte<br>via AGV</div>
-                        <div class="connector arrow-right"></div>
-                        <div class="node green">Estação 2:<br>Pintura (Robôs)</div>
                     </div>
 
-                    <!-- Vertical Connection -->
-                    <div class="connector arrow-down" style="height: 60px; margin: 10px 0;"></div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node yellow">Transporte<br>via AGV</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node green">Estação 2:<br>Pintura (Robôs)</div>
+                </div>
 
-                    <!-- Row 2 Horizontal -->
-                    <div class="row" style="align-items: center; gap: 15px; background: rgba(255,255,255,0.8); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
-                            <div class="diamond-container" style="margin: 0;">
-                                <div class="diamond yellow"></div>
-                                <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
-                            </div>
-                            <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
-                            
-                            <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
-                                <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não (Defeito)</span>
-                                <div class="connector arrow-down"></div>
-                                <div class="node red" style="margin-top: 10px;">Célula de Retrabalho</div>
-                            </div>
+                <!-- Vertical Connection -->
+                <div class="connector arrow-down"></div>
+
+                <!-- Row 2 Horizontal -->
+                <div class="row">
+                    <div class="col">
+                        <div class="diamond-container">
+                            <div class="diamond"></div>
+                            <div class="diamond-text">Aprova na<br>Visão 3D?</div>
                         </div>
-
-                        <div class="connector arrow-right" style="margin-left: 25px;"></div>
-                        <div class="node yellow">Teste de<br>Funcionalidade</div>
-                        <div class="connector arrow-right"></div>
-                        <div class="node yellow">Paletização<br>Robotizada</div>
-                        <div class="connector arrow-right"></div>
-                        <div class="node end">Expedição</div>
                     </div>
+
+                    <div class="connector arrow-right"></div>
+                    <div class="node yellow">Teste de<br>Funcionalidade</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node yellow">Paletização<br>Robotizada</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node end">Expedição</div>
                 </div>
             </div>
         </div>
@@ -434,26 +362,21 @@
     <!-- Lâmina 4: Etapa 1 -->
     <div class="slide">
         <h2>Etapa 1: Inspeção de Entrada e Soldagem</h2>
-        <div class="flowchart-container" style="transform: scale(0.9);">
+        <div class="flowchart-container">
             <div class="flowchart">
                 <div class="node start">Entrada de Chapas</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
                     <div class="col">
                         <div class="diamond-container">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Peças no<br>Padrão?</div>
+                            <div class="diamond"></div>
+                            <div class="diamond-text">Peças no<br>Padrão?</div>
                         </div>
-                        <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
-                    <div class="row-align">
-                        <div class="connector arrow-right"></div>
-                        <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                        <div class="node red">Retorno ao Fornecedor<br><small>(Gargalo na Origem)</small></div>
-                    </div>
+                    <div class="node red">Retorno ao Fornecedor</div>
                 </div>
                 <div class="connector arrow-down"></div>
-                <div class="node green">Estação 1: Soldagem Robotizada<br><small>(Transformação com Precisão)</small></div>
+                <div class="node green">Estação 1: Soldagem Robotizada</div>
             </div>
         </div>
     </div>
@@ -461,25 +384,20 @@
     <!-- Lâmina 5: Etapa 2 -->
     <div class="slide">
         <h2>Etapa 2: Pintura e Inspeção com IA</h2>
-        <div class="flowchart-container" style="transform: scale(0.85);">
+        <div class="flowchart-container">
             <div class="flowchart">
-                <div class="node yellow">Transporte via AGV (Robôs autônomos)</div>
+                <div class="node yellow">Transporte via AGV</div>
                 <div class="connector arrow-down"></div>
                 <div class="node green">Estação 2: Pintura por Robôs Spray</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
                     <div class="col">
                         <div class="diamond-container">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
+                            <div class="diamond"></div>
+                            <div class="diamond-text">Aprova na<br>Visão 3D?</div>
                         </div>
-                        <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
-                    <div class="row-align">
-                        <div class="connector arrow-right"></div>
-                        <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                        <div class="node red">Célula de Retrabalho<br><small>(Custo de falha robótica/ferramental)</small></div>
-                    </div>
+                    <div class="node red">Célula de Retrabalho</div>
                 </div>
             </div>
         </div>
@@ -488,18 +406,19 @@
     <!-- Lâmina 6: Etapa 3 -->
     <div class="slide">
         <h2>Etapa 3: Fim de Linha e Expedição</h2>
-        <div class="flowchart-container" style="transform: scale(0.9); margin-top: 50px;">
+        <div class="flowchart-container">
             <div class="row">
                 <div class="node yellow">Carroceria finalizada</div>
                 <div class="connector arrow-right"></div>
-                <div class="node yellow">Teste Funcional<br><small>(Necessário para liberação)</small></div>
+                <div class="node yellow">Teste Funcional</div>
                 <div class="connector arrow-right"></div>
-                <div class="node yellow">Paletização Robotizada<br><small>(Otimização de Espaço/Ergonomia)</small></div>
+                <div class="node yellow">Paletização Robotizada</div>
                 <div class="connector arrow-right"></div>
                 <div class="node end">Expedição</div>
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="navigation">
