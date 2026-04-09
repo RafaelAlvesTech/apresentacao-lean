@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apresentação Lean - Automação Robótica Automotiva</title>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação Lean - Automação Robótica Automotiva</title>
     <!-- Fonte amigável para Dislexia -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.min.css">
     <style>
         :root {
             --bg-color: #ffffff;
             --text-color: #000000;
-            --valor-color: #006400; /* Verde escuro para melhor contraste */
-            --necessario-color: #b8860b; /* Dourado escuro */
-            --desperdicio-color: #8b0000; /* Vermelho escuro */
+            --valor-color: #006400; 
+            --necessario-color: #b8860b; 
+            --desperdicio-color: #8b0000; 
             --font-main: 'OpenDyslexic', 'Verdana', sans-serif;
         }
 
@@ -28,7 +24,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.5;
-            letter-spacing: 0.05em; /* Melhor para dislexia */
+            letter-spacing: 0.05em;
         }
 
         .presentation {
@@ -73,8 +69,8 @@
         .nav-button {
             background: #000;
             color: #fff;
-            border: 4px solid #fff; /* Borda para contraste */
-            padding: 20px;
+            border: 4px solid #fff;
+            padding: 15px;
             cursor: pointer;
             font-size: 32px;
             border-radius: 12px;
@@ -90,7 +86,7 @@
         .nav-button:hover, .nav-button:focus {
             background: #333;
             transform: scale(1.1);
-            outline: 4px solid orange; /* Foco visível */
+            outline: 4px solid orange;
         }
 
         h1 {
@@ -98,105 +94,200 @@
             color: var(--text-color);
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border-bottom: 8px solid var(--valor-color);
-            padding-bottom: 10px;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--text-color);
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: 30px;
-            background: #eee;
+            margin-bottom: 20px;
+            background: #f0f0f0;
             width: 100%;
             padding: 10px;
+            border: 2px solid #000;
         }
 
         .content-box {
             background: #fff;
             border: 4px solid #000;
-            border-radius: 0;
-            padding: 30px;
+            padding: 20px;
             max-width: 1000px;
             width: 100%;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
         }
 
         .content-box li {
-            margin-bottom: 25px;
-            padding: 20px;
+            margin-bottom: 15px;
+            padding: 15px;
             border: 3px solid #ccc;
             background: #fff;
             list-style: none;
         }
 
-        /* Indicadores táteis/textuais além da cor */
         .content-box li.green { border: 6px solid var(--valor-color); }
         .content-box li.yellow { border: 6px solid var(--necessario-color); border-style: dashed; }
         .content-box li.red { border: 6px solid var(--desperdicio-color); border-style: double; }
 
+        /* Layout do Fluxograma Restaurado */
+        .flowchart-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
         .node {
-            padding: 20px;
+            padding: 15px 25px;
             border: 4px solid #000;
             font-weight: bold;
             text-align: center;
-            min-width: 220px;
+            min-width: 200px;
             color: #fff;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            box-shadow: 4px 4px 0 #000;
         }
 
         .node.green { background-color: var(--valor-color); }
-        .node.yellow { background-color: var(--necessario-color); color: #000; }
+        .node.yellow { background-color: var(--necessario-color); color: #000; box-shadow: 4px 4px 0 #000; }
         .node.red { background-color: var(--desperdicio-color); }
         .node.start, .node.end { background-color: #333; border-radius: 50px; }
 
+        .diamond-container {
+            width: 120px; height: 120px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+
         .diamond {
-            width: 100px; height: 100px;
+            width: 90px; height: 90px;
             background: var(--necessario-color);
             border: 4px solid #000;
             transform: rotate(45deg);
+            box-shadow: 4px 4px 0 #000;
         }
 
         .diamond-text {
-            font-size: 1.1rem;
+            position: absolute;
+            font-size: 1rem;
+            font-weight: bold;
             color: #000;
-            transform: rotate(0deg); /* Mantém texto reto */
+            text-align: center;
+            z-index: 2;
+            width: 120%;
         }
 
+        /* Conectores e Setas Restaurados */
         .connector {
             background: #000;
+            position: relative;
         }
 
-        /* Rótulos Sim/Não com alto contraste */
+        @media (min-width: 769px) {
+            .connector.arrow-right {
+                width: 50px; height: 8px;
+            }
+            .connector.arrow-right::after {
+                content: ''; position: absolute; right: -12px; top: -10px;
+                border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 18px solid #000;
+            }
+            .connector.arrow-down {
+                width: 8px; height: 40px;
+            }
+            .connector.arrow-down::after {
+                content: ''; position: absolute; bottom: -12px; left: -10px;
+                border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 18px solid #000;
+            }
+        }
+
+        .branch-no {
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
         .branch-label {
             background: #000;
             color: #fff;
-            padding: 5px 10px;
-            font-size: 1.2rem;
+            padding: 4px 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
             border-radius: 4px;
+            margin-bottom: 5px;
+            white-space: nowrap;
         }
 
+        .sim-label {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--valor-color);
+        }
+
+        /* Responsive Mobile */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.6rem; }
-            .content-box { font-size: 1.2rem; }
-            .node { min-width: 160px; font-size: 1.1rem; }
-            .navigation { bottom: 10px; right: 10px; gap: 10px; }
-            .nav-button { width: 60px; height: 60px; font-size: 24px; }
+            .content-box { font-size: 1.1rem; }
+            .node { min-width: 160px; font-size: 1rem; }
+            .row { flex-direction: column; }
+            .connector.arrow-right { display: none; }
+            .connector.arrow-down { display: block; width: 6px; height: 25px; }
+            .branch-no { position: relative; top: auto; left: auto; transform: none; margin-top: 10px; }
+            .sim-label { display: none; }
+            .navigation { width: 100%; bottom: 0; right: 0; justify-content: space-between; padding: 10px; background: rgba(255,255,255,0.9); border-top: 2px solid #000; }
+            .nav-button { width: 55px; height: 55px; font-size: 24px; }
+            .slide { padding-bottom: 100px; }
         }
 
         .legend {
-            border: 5px solid #000;
-            padding: 20px;
-            gap: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            border: 4px solid #000;
+            padding: 15px;
+            margin-bottom: 10px;
         }
-        .legend-item { font-size: 1.3rem; }
-        .box { width: 30px; height: 30px; border: 2px solid #000; }
+        .legend-item { display: flex; align-items: center; font-size: 1.2rem; font-weight: bold; }
+        .box { width: 25px; height: 25px; border: 2px solid #000; margin-right: 10px; }
+        .box.green { background: var(--valor-color); }
+        .box.yellow { background: var(--necessario-color); }
+        .box.red { background: var(--desperdicio-color); }
     </style>
-
-
 </head>
 <body>
 
@@ -204,105 +295,93 @@
     <!-- Lâmina 1 -->
     <div class="slide active">
         <h1>Manufatura Enxuta Automotiva</h1>
-        <p style="font-size: 1.5rem; color: #666;">Automação Robótica com Braços Articulados e AGVs</p>
+        <p style="font-size: 1.8rem; color: #333; font-weight: bold;">Automação Robótica com Braços Articulados e AGVs</p>
     </div>
 
     <!-- Lâmina 2: Princípios -->
     <div class="slide">
-        <h2>O que agrega valor? (Exemplo Real)</h2>
+        <h2>O que agrega valor?</h2>
         <div class="content-box">
             <ul>
                 <li class="green">
-                    <strong style="color: #43a047;">Cria Valor (Verde):</strong> Processos robóticos de precisão (ex: soldagem robotizada e pintura automotiva) que transformam efetivamente o veículo e garantem alta qualidade.
+                    <strong style="color: var(--valor-color);">Cria Valor (Verde):</strong> Processos robóticos que transformam o veículo (Solda e Pintura).
                 </li>
                 <li class="yellow">
-                    <strong style="color: #fbc02d;">Não Cria Valor, mas é Necessário (Amarelo):</strong> Movimentação via AGVs (robôs móveis), inspeções de qualidade por câmeras 3D e armazenamento. Otimizam o fluxo, mas o cliente "não paga por eles" diretamente.
+                    <strong style="color: var(--necessario-color);">Necessário (Amarelo):</strong> Movimentação via AGVs e Inspeções. Não agregam valor direto, mas são essenciais.
                 </li>
                 <li class="red">
-                    <strong style="color: #e53935;">Não Cria Valor (Vermelho):</strong> Defeitos detectados na visão computacional que levam as peças para retrabalho manual ou devolução de materiais fora do padrão.
+                    <strong style="color: var(--desperdicio-color);">Desperdício (Vermelho):</strong> Defeitos e Retrabalho detectados pela visão computacional.
                 </li>
             </ul>
         </div>
     </div>
 
-    <!-- Lâmina 3: Descrição e Referências -->
+    <!-- Lâmina 3: Descrição -->
     <div class="slide">
-        <h2>O Processo: Linha de Montagem Robotizada</h2>
+        <h2>O Processo Robotizado</h2>
         <div class="content-box">
-            <p><strong>Descrição do Processo:</strong></p>
-            <p>A automação robótica na indústria automotiva moderna utiliza células de manufatura integradas. O processo envolve inspeção 3D de peças, soldagem de alta precisão por robôs articulados, pintura em estufa isolada e movimentação contínua através de Veículos Guiados Automatizados (AGVs).</p>
-            <p>A inspeção final por visão computacional baseada em IA garante que qualquer desvio (como parafusos faltando ou falhas na pintura) seja imediatamente encaminhado para a célula de retrabalho.</p>
+            <p>A automação utiliza células integradas: inspeção 3D, soldagem de precisão, pintura e movimentação AGV.</p>
+            <p>A inspeção por IA garante que falhas sejam encaminhadas imediatamente para o retrabalho.</p>
             <br>
-            <p><strong>Referências Base:</strong></p>
-            <ul>
-                <li style="border-left-color: #607d8b; padding: 10px; margin-bottom: 5px;"><em>"Robótica Industrial e AGVs em Linhas Automotivas"</em> - Selettra, Novus Hi-Tech e Engenharia Híbrida.</li>
-                <li style="border-left-color: #607d8b; padding: 10px; margin-bottom: 5px;"><em>"Visão Computacional e Inspeção de Qualidade na Manufatura"</em> - SMT Factory e A Voz da Indústria.</li>
-            </ul>
+            <p><strong>Referências:</strong> Selettra, Novus Hi-Tech, SMT Factory.</p>
         </div>
     </div>
 
-    <!-- Lâmina 4: Completo Distribuído -->
+    <!-- Lâmina 4: Fluxo Completo -->
     <div class="slide">
-        <h2>Linha de Montagem Robotizada (Fluxo Completo)</h2>
-        
+        <h2>Linha de Montagem (Fluxo Completo)</h2>
         <div class="legend">
-            <div class="legend-item"><div class="box green"></div> Transformação Robótica (Valor)</div>
-            <div class="legend-item"><div class="box yellow"></div> Logística/Inspeção (Necessário)</div>
-            <div class="legend-item"><div class="box red"></div> Retrabalho/Rejeição (Desperdício)</div>
+            <div class="legend-item"><div class="box green"></div> Valor</div>
+            <div class="legend-item"><div class="box yellow"></div> Necessário</div>
+            <div class="legend-item"><div class="box red"></div> Desperdício</div>
         </div>
 
         <div class="flowchart-container">
             <div class="flowchart">
-                <!-- Row 1 Horizontal -->
                 <div class="row">
-                    <div class="node start">Início:<br>Entrada de Chapas</div>
+                    <div class="node start">Início:<br>Entrada</div>
                     <div class="connector arrow-right"></div>
-                    
                     <div class="col">
                         <div class="diamond-container">
                             <div class="diamond"></div>
                             <div class="diamond-text">Peças no<br>Padrão?</div>
                             <div class="branch-no">
-                                <span class="branch-label" style="color: #e53935;">▼ Não</span>
-                                <div class="node red" style="min-width: 140px; padding: 8px; font-size: 0.85rem;">Retorno ao<br>Fornecedor</div>
+                                <span class="branch-label" style="background: var(--desperdicio-color);">▼ Não</span>
+                                <div class="node red" style="min-width: 140px; font-size: 0.9rem;">Rejeição</div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
-                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #43a047;">Sim ►</span>
+                    <div class="col">
+                        <span class="branch-label sim-label">Sim ►</span>
                         <div class="connector arrow-right"></div>
                     </div>
-                    <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
+                    <div class="node green">Soldagem</div>
                     <div class="connector arrow-right"></div>
-                    <div class="node yellow">Transporte<br>via AGV</div>
+                    <div class="node yellow">AGV</div>
                     <div class="connector arrow-right"></div>
-                    <div class="node green">Estação 2:<br>Pintura (Robôs)</div>
+                    <div class="node green">Pintura</div>
                 </div>
 
-                <!-- Vertical Connection -->
                 <div class="connector arrow-down"></div>
 
-                <!-- Row 2 Horizontal -->
                 <div class="row">
                     <div class="col">
                         <div class="diamond-container">
                             <div class="diamond"></div>
                             <div class="diamond-text">Aprova na<br>Visão 3D?</div>
                             <div class="branch-no">
-                                <span class="branch-label" style="color: #e53935;">▼ Não</span>
-                                <div class="node red" style="min-width: 140px; padding: 8px; font-size: 0.85rem;">Célula de<br>Retrabalho</div>
+                                <span class="branch-label" style="background: var(--desperdicio-color);">▼ Não</span>
+                                <div class="node red" style="min-width: 140px; font-size: 0.9rem;">Retrabalho</div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
-                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #43a047;">Sim ►</span>
+                    <div class="col">
+                        <span class="branch-label sim-label">Sim ►</span>
                         <div class="connector arrow-right"></div>
                     </div>
-                    <div class="node yellow">Teste de<br>Funcionalidade</div>
+                    <div class="node yellow">Testes</div>
                     <div class="connector arrow-right"></div>
-                    <div class="node yellow">Paletização<br>Robotizada</div>
+                    <div class="node yellow">Paletização</div>
                     <div class="connector arrow-right"></div>
                     <div class="node end">Expedição</div>
                 </div>
@@ -310,9 +389,9 @@
         </div>
     </div>
 
-    <!-- Lâmina 4: Etapa 1 -->
+    <!-- Lâmina 5: Etapa 1 -->
     <div class="slide">
-        <h2>Etapa 1: Inspeção de Entrada e Soldagem</h2>
+        <h2>Etapa 1: Inspeção e Soldagem</h2>
         <div class="flowchart-container">
             <div class="flowchart">
                 <div class="node start">Entrada de Chapas</div>
@@ -324,31 +403,29 @@
                             <div class="diamond-text">Peças no<br>Padrão?</div>
                         </div>
                     </div>
-                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
-                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #e53935;">Não ►</span>
+                    <div class="col">
+                        <span class="branch-label" style="background: var(--desperdicio-color);">Não ►</span>
                         <div class="connector arrow-right"></div>
                     </div>
-                    <div class="node red">Retorno ao Fornecedor</div>
+                    <div class="node red">Rejeição</div>
                 </div>
-                
-                <div style="display: flex; flex-direction: column; align-items: center; margin: 10px 0;">
-                    <span class="branch-label" style="color: #43a047; margin-bottom: 5px;">▼ Sim</span>
+                <div class="col">
+                    <span class="branch-label" style="background: var(--valor-color);">▼ Sim</span>
                     <div class="connector arrow-down"></div>
                 </div>
-                
-                <div class="node green">Estação 1: Soldagem Robotizada</div>
+                <div class="node green">Soldagem Robotizada</div>
             </div>
         </div>
     </div>
 
-    <!-- Lâmina 5: Etapa 2 -->
+    <!-- Lâmina 6: Etapa 2 -->
     <div class="slide">
-        <h2>Etapa 2: Pintura e Inspeção com IA</h2>
+        <h2>Etapa 2: Pintura e Qualidade</h2>
         <div class="flowchart-container">
             <div class="flowchart">
-                <div class="node yellow">Transporte via AGV</div>
+                <div class="node yellow">Transporte AGV</div>
                 <div class="connector arrow-down"></div>
-                <div class="node green">Estação 2: Pintura por Robôs Spray</div>
+                <div class="node green">Pintura Robótica</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
                     <div class="col">
@@ -357,37 +434,20 @@
                             <div class="diamond-text">Aprova na<br>Visão 3D?</div>
                         </div>
                     </div>
-                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
-                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #e53935;">Não ►</span>
+                    <div class="col">
+                        <span class="branch-label" style="background: var(--desperdicio-color);">Não ►</span>
                         <div class="connector arrow-right"></div>
                     </div>
-                    <div class="node red">Célula de Retrabalho</div>
+                    <div class="node red">Retrabalho</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Lâmina 6: Etapa 3 -->
-    <div class="slide">
-        <h2>Etapa 3: Fim de Linha e Expedição</h2>
-        <div class="flowchart-container">
-            <div class="row">
-                <div class="node yellow">Carroceria finalizada</div>
-                <div class="connector arrow-right"></div>
-                <div class="node yellow">Teste Funcional</div>
-                <div class="connector arrow-right"></div>
-                <div class="node yellow">Paletização Robotizada</div>
-                <div class="connector arrow-right"></div>
-                <div class="node end">Expedição</div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <div class="navigation">
-    <button class="nav-button left" id="prev">&#10094;</button>
-    <button class="nav-button right" id="next">&#10095;</button>
+    <button class="nav-button" id="prev" aria-label="Anterior">&#10094;</button>
+    <button class="nav-button" id="next" aria-label="Próximo">&#10095;</button>
 </div>
 
 <script>
@@ -398,9 +458,7 @@
     function showSlide(index) {
         slides.forEach((slide, i) => {
             slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
-            }
+            if (i === index) slide.classList.add('active');
         });
     }
 
@@ -409,12 +467,9 @@
         showSlide(currentSlide);
     }
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-            changeSlide(1);
-        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-            changeSlide(-1);
-        }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
     });
 
     document.getElementById('prev').addEventListener('click', () => changeSlide(-1));
