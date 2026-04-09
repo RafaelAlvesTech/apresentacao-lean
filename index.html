@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manufatura Enxuta - Apresentação Didática</title>
+    <title>Lean Manufacturing - Didactic Presentation</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.min.css">
     <style>
         :root {
@@ -112,12 +112,11 @@
             list-style: none;
         }
 
-        /* Fluxograma perfeitamente ajustado */
         .flowchart-container {
             width: 100%;
             display: flex;
             justify-content: center;
-            transform: scale(0.7); /* Reduzido para garantir encaixe total */
+            transform: scale(0.7);
             transform-origin: center center;
             margin: 10px 0;
         }
@@ -126,7 +125,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 80px; /* Gap reduzido para não cortar embaixo */
+            gap: 80px;
         }
 
         .row {
@@ -182,7 +181,7 @@
             position: relative;
         }
         .connector.arrow-right::after {
-            content: ''; position: absolute; right: -8px; top: -7px;
+            content: ''; position: absolute; right: -12px; top: -7px;
             border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 12px solid #000;
         }
         .connector.arrow-down {
@@ -252,107 +251,107 @@
 
 <div class="presentation">
     <div class="navigation-bar">
-        <button class="nav-button" id="prev">◀ Voltar</button>
-        <div id="slide-info" style="font-weight: bold;">Carregando...</div>
-        <button class="nav-button" id="next">Avançar ▶</button>
+        <button class="nav-button" id="prev">◀ Back</button>
+        <div id="slide-info" style="font-weight: bold;">Loading...</div>
+        <button class="nav-button" id="next">Next ▶</button>
     </div>
 
     <div class="slide-container">
-        <!-- Lâmina 1 -->
+        <!-- Slide 1 -->
         <div class="slide active">
-            <h1>Manufatura Enxuta Automotiva</h1>
+            <h1>Automotive Lean Manufacturing</h1>
             <div class="content-box" style="text-align: center;">
-                <p style="font-size: 1.5rem; color: var(--valor-color); font-weight: bold;">Automação Robótica Inteligente</p>
-                <p>Otimizando a produção através da eliminação de desperdícios.</p>
+                <p style="font-size: 1.5rem; color: var(--valor-color); font-weight: bold;">Intelligent Robotic Automation</p>
+                <p>Optimizing production through waste elimination and efficient workflows.</p>
             </div>
         </div>
 
-        <!-- Lâmina 2 -->
+        <!-- Slide 2 -->
         <div class="slide">
-            <h2>O que agrega valor ao produto?</h2>
+            <h2>What Adds Value to the Product?</h2>
             <div class="content-box">
                 <ul>
-                    <li style="border-left: 10px solid var(--valor-color);"><strong>VALOR:</strong> Atividades que o cliente paga (Soldagem/Pintura).</li>
-                    <li style="border-left: 10px solid var(--necessario-color); border-style: dashed;"><strong>APOIO:</strong> Necessário mas sem valor direto (AGVs/Inspeção).</li>
-                    <li style="border-left: 10px solid var(--desperdicio-color); border-style: double;"><strong>PERDA:</strong> Deve ser eliminado (Defeitos/Retrabalho).</li>
+                    <li style="border-left: 10px solid var(--valor-color);"><strong>VALUE ADDED:</strong> Activities the customer pays for (Welding/Painting).</li>
+                    <li style="border-left: 10px solid var(--necessario-color); border-style: dashed;"><strong>SUPPORT:</strong> Necessary but no direct value (AGVs/Inspection).</li>
+                    <li style="border-left: 10px solid var(--desperdicio-color); border-style: double;"><strong>WASTE:</strong> Must be eliminated (Defects/Rework).</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Lâmina 3 -->
+        <!-- Slide 3 -->
         <div class="slide">
-            <h2>Tecnologias de Eficiência</h2>
+            <h2>Efficiency Technologies</h2>
             <div class="content-box">
-                <p><strong>Robôs:</strong> Precisão total no trabalho (Fazer certo na 1ª vez).</p>
-                <p><strong>AGVs:</strong> Transporte autônomo sem gargalos logísticos.</p>
-                <p><strong>Visão IA:</strong> Inspeção milimétrica para evitar falhas.</p>
+                <p><strong>Robots:</strong> Absolute precision (Right the first time).</p>
+                <p><strong>AGVs:</strong> Autonomous transport without logistical bottlenecks.</p>
+                <p><strong>AI Vision:</strong> Millimetric inspection to prevent failures.</p>
             </div>
         </div>
 
-        <!-- Lâmina 4: Fluxo Completo -->
+        <!-- Slide 4: Full Flow -->
         <div class="slide">
-            <h2>Visão Geral do Fluxo de Fabricação</h2>
+            <h2>Manufacturing Workflow Overview</h2>
             <div class="legend">
-                <div class="legend-item"><div class="box green"></div> Valor</div>
-                <div class="legend-item"><div class="box yellow"></div> Apoio</div>
-                <div class="legend-item"><div class="box red"></div> Perda</div>
+                <div class="legend-item"><div class="box green"></div> Value</div>
+                <div class="legend-item"><div class="box yellow"></div> Support</div>
+                <div class="legend-item"><div class="box red"></div> Loss</div>
             </div>
 
             <div class="flowchart-container">
                 <div class="flowchart">
-                    <!-- Linha 1 -->
+                    <!-- Row 1 -->
                     <div class="row">
-                        <div class="node start">Início</div>
+                        <div class="node start">Start</div>
                         <div class="connector arrow-right"></div>
                         <div class="col">
                             <div class="diamond-container">
                                 <div class="diamond"></div>
-                                <div class="diamond-text">Material<br>Correto?</div>
+                                <div class="diamond-text">Material<br>Correct?</div>
                                 <div class="branch-no">
-                                    <span class="branch-label" style="background:var(--desperdicio-color)">NÃO</span>
-                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Rejeição</div>
+                                    <span class="branch-label" style="background:var(--desperdicio-color)">NO</span>
+                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Rejection</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col"><span class="sim-label">SIM</span><div class="connector arrow-right"></div></div>
-                        <div class="node green">Soldagem</div>
+                        <div class="col"><span class="sim-label">YES</span><div class="connector arrow-right"></div></div>
+                        <div class="node green">Welding</div>
                         <div class="connector arrow-right"></div>
                         <div class="node yellow">AGV</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node green">Pintura</div>
+                        <div class="node green">Painting</div>
                     </div>
 
                     <div class="connector arrow-down"></div>
 
-                    <!-- Linha 2 -->
+                    <!-- Row 2 -->
                     <div class="row">
                         <div class="col">
                             <div class="diamond-container">
                                 <div class="diamond"></div>
-                                <div class="diamond-text">Visão IA<br>Aprova?</div>
+                                <div class="diamond-text">AI Vision<br>Approved?</div>
                                 <div class="branch-no">
-                                    <span class="branch-label" style="background:var(--desperdicio-color)">NÃO</span>
-                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Retrabalho</div>
+                                    <span class="branch-label" style="background:var(--desperdicio-color)">NO</span>
+                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Rework</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col"><span class="sim-label">SIM</span><div class="connector arrow-right"></div></div>
-                        <div class="node yellow">Testes</div>
+                        <div class="col"><span class="sim-label">YES</span><div class="connector arrow-right"></div></div>
+                        <div class="node yellow">Testing</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node yellow">Paletes</div>
+                        <div class="node yellow">Palletizing</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node end">Expedição</div>
+                        <div class="node end">Dispatch</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Lâmina 5 -->
+        <!-- Slide 5 -->
         <div class="slide">
-            <h2>Etapa 1: Soldagem Robotizada</h2>
+            <h2>Step 1: Robotic Welding</h2>
             <div class="flowchart-container">
                 <div class="flowchart">
-                    <div class="node start">Entrada</div>
+                    <div class="node start">Entry</div>
                     <div class="connector arrow-down"></div>
                     <div class="row">
                         <div class="col">
@@ -360,55 +359,55 @@
                                 <div class="diamond"></div><div class="diamond-text">Ok?</div>
                             </div>
                         </div>
-                        <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">NÃO</span><div class="connector arrow-right"></div></div>
-                        <div class="node red">Sucata</div>
+                        <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">NO</span><div class="connector arrow-right"></div></div>
+                        <div class="node red">Scrap</div>
                     </div>
-                    <div class="col"><span class="sim-label">SIM</span><div class="connector arrow-down"></div></div>
-                    <div class="node green">Soldagem de Precisão</div>
+                    <div class="col"><span class="sim-label">YES</span><div class="connector arrow-down"></div></div>
+                    <div class="node green">Precision Welding</div>
                 </div>
             </div>
         </div>
 
-        <!-- Lâmina 6 -->
+        <!-- Slide 6 -->
         <div class="slide">
-            <h2>Etapa 2: Pintura e Qualidade</h2>
+            <h2>Step 2: Painting & Quality</h2>
             <div class="flowchart-container" style="transform: scale(0.8);">
                 <div class="flowchart">
-                    <div class="node yellow">Transporte AGV</div>
+                    <div class="node yellow">AGV Transport</div>
                     <div class="connector arrow-down"></div>
-                    <div class="node green">Pintura</div>
+                    <div class="node green">Robotic Painting</div>
                     <div class="connector arrow-down"></div>
                     <div class="row">
                         <div class="col">
                             <div class="diamond-container">
-                                <div class="diamond"></div><div class="diamond-text">Sensores 3D?</div>
+                                <div class="diamond"></div><div class="diamond-text">3D Sensors?</div>
                             </div>
                         </div>
-                        <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">FALHA</span><div class="connector arrow-right"></div></div>
-                        <div class="node red">Retrabalho</div>
+                        <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">FAILURE</span><div class="connector arrow-right"></div></div>
+                        <div class="node red">Rework</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Lâmina 7: Finalização -->
+        <!-- Slide 7 -->
         <div class="slide">
-            <h2>Fim de Linha: Testes, Paletização e Expedição</h2>
+            <h2>End of Line: Testing, Palletizing & Dispatch</h2>
             <div class="flowchart-container">
                 <div class="flowchart">
                     <div class="row">
-                        <div class="node yellow">Testes de Segurança<br>e Funcionalidade</div>
+                        <div class="node yellow">Safety & Functional<br>Testing</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node yellow">Paletização<br>Robotizada</div>
+                        <div class="node yellow">Robotic<br>Palletizing</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node end">Expedição ao<br>Mercado</div>
+                        <div class="node end">Dispatch to<br>Market</div>
                     </div>
                 </div>
             </div>
             <div class="content-box" style="margin-top: 30px;">
-                <p><strong>1. Testes:</strong> Verificação final de freios, sistemas elétricos e performance. É o selo de garantia de que o produto é seguro.</p>
-                <p><strong>2. Paletização:</strong> Robôs organizam as cargas com precisão milimétrica, eliminando erros de estoque e fadiga humana.</p>
-                <p><strong>3. Expedição:</strong> A logística enxuta garante que o produto saia da fábrica direto para o cliente, reduzindo custos de armazenamento.</p>
+                <p><strong>1. Testing:</strong> Final check of brakes, electrical systems, and performance. It is the seal of guarantee that the product is safe.</p>
+                <p><strong>2. Palletizing:</strong> Robots organize loads with millimetric precision, eliminating inventory errors and human fatigue.</p>
+                <p><strong>3. Dispatch:</strong> Lean logistics ensures the product leaves the factory straight to the customer, reducing storage costs.</p>
             </div>
         </div>
     </div>
@@ -421,7 +420,7 @@
 
     function updateSlide() {
         slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-        info.innerText = `Lâmina ${currentSlide + 1} de ${slides.length}`;
+        info.innerText = `Slide ${currentSlide + 1} of ${slides.length}`;
     }
 
     document.getElementById('prev').onclick = () => { if(currentSlide > 0) { currentSlide--; updateSlide(); } };
