@@ -173,6 +173,25 @@
             display: flex; align-items: center; justify-content: center;
         }
 
+        .branch-no {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            margin-top: 10px;
+        }
+
+        .branch-label {
+            font-size: 13px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            white-space: nowrap;
+        }
+
         .diamond {
             width: 80px; height: 80px;
             background: #fbc02d;
@@ -205,6 +224,19 @@
             .connector.arrow-right { display: none; }
             .connector.arrow-down { display: block; width: 4px; height: 20px; }
             
+            .branch-no {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+
+            .sim-label {
+                display: none;
+            }
+
             .navigation {
                 width: 100%;
                 bottom: 0;
@@ -325,10 +357,17 @@
                         <div class="diamond-container">
                             <div class="diamond"></div>
                             <div class="diamond-text">Peças no<br>Padrão?</div>
+                            <div class="branch-no">
+                                <span class="branch-label" style="color: #e53935;">▼ Não</span>
+                                <div class="node red" style="min-width: 140px; padding: 8px; font-size: 0.85rem;">Retorno ao<br>Fornecedor</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="connector arrow-right"></div>
+                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
+                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #43a047;">Sim ►</span>
+                        <div class="connector arrow-right"></div>
+                    </div>
                     <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
                     <div class="connector arrow-right"></div>
                     <div class="node yellow">Transporte<br>via AGV</div>
@@ -345,10 +384,17 @@
                         <div class="diamond-container">
                             <div class="diamond"></div>
                             <div class="diamond-text">Aprova na<br>Visão 3D?</div>
+                            <div class="branch-no">
+                                <span class="branch-label" style="color: #e53935;">▼ Não</span>
+                                <div class="node red" style="min-width: 140px; padding: 8px; font-size: 0.85rem;">Célula de<br>Retrabalho</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="connector arrow-right"></div>
+                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
+                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #43a047;">Sim ►</span>
+                        <div class="connector arrow-right"></div>
+                    </div>
                     <div class="node yellow">Teste de<br>Funcionalidade</div>
                     <div class="connector arrow-right"></div>
                     <div class="node yellow">Paletização<br>Robotizada</div>
@@ -373,9 +419,18 @@
                             <div class="diamond-text">Peças no<br>Padrão?</div>
                         </div>
                     </div>
+                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
+                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #e53935;">Não ►</span>
+                        <div class="connector arrow-right"></div>
+                    </div>
                     <div class="node red">Retorno ao Fornecedor</div>
                 </div>
-                <div class="connector arrow-down"></div>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; margin: 10px 0;">
+                    <span class="branch-label" style="color: #43a047; margin-bottom: 5px;">▼ Sim</span>
+                    <div class="connector arrow-down"></div>
+                </div>
+                
                 <div class="node green">Estação 1: Soldagem Robotizada</div>
             </div>
         </div>
@@ -396,6 +451,10 @@
                             <div class="diamond"></div>
                             <div class="diamond-text">Aprova na<br>Visão 3D?</div>
                         </div>
+                    </div>
+                    <div class="col" style="position: relative; justify-content: center; height: 100%;">
+                        <span class="branch-label sim-label" style="position: absolute; top: -20px; color: #e53935;">Não ►</span>
+                        <div class="connector arrow-right"></div>
                     </div>
                     <div class="node red">Célula de Retrabalho</div>
                 </div>
