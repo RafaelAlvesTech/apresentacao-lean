@@ -368,67 +368,63 @@
             <div class="legend-item"><div class="box red"></div> Retrabalho/Rejeição (Desperdício)</div>
         </div>
 
-        <div style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden;">
-            <div class="flowchart-container" style="transform: scale(0.42);">
-                <div class="flowchart">
-                    <!-- Topo Vertical -->
-                    <div class="node start">Início: Entrada de Chapas</div>
-                    <div class="connector arrow-down"></div>
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden; padding-bottom: 80px;">
+            <div class="flowchart-container" style="transform: scale(0.38); transform-origin: center;">
+                <div class="row" style="align-items: center; gap: 15px;">
+                    <!-- Início Horizontal -->
+                    <div class="node start">Início:<br>Entrada de Chapas</div>
+                    <div class="connector arrow-right"></div>
                     
-                    <!-- Decisão 1: Horizontal (Inspeção de Entrada) -->
-                    <div class="row">
-                        <div class="col">
-                            <div class="diamond-container">
-                                <div class="diamond yellow"></div>
-                                <div class="diamond-text dark">Peças no<br>Padrão?</div>
-                            </div>
-                            <span class="path-label" style="margin-top: 5px;">Sim</span>
+                    <!-- Decisão 1: Horizontal -->
+                    <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                        <div class="diamond-container" style="margin: 0;">
+                            <div class="diamond yellow"></div>
+                            <div class="diamond-text dark">Peças no<br>Padrão?</div>
                         </div>
-                        <div class="row-align">
-                            <div class="connector arrow-right"></div>
-                            <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                            <div class="col">
-                                <div class="node red">Retorno ao Fornecedor</div>
-                                <div class="connector arrow-down" style="margin-top: 10px;"></div>
-                                <div class="node end">Fim (Descarte)</div>
-                            </div>
+                        <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
+                        
+                        <!-- Caminho Não (Desce) -->
+                        <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
+                            <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não</span>
+                            <div class="connector arrow-down"></div>
+                            <div class="node red" style="margin-top: 10px;">Retorno ao Fornecedor</div>
+                            <div class="connector arrow-down" style="margin-top: 10px;"></div>
+                            <div class="node end" style="margin-top: 10px;">Fim (Descarte)</div>
                         </div>
                     </div>
 
-                    <div class="connector arrow-down"></div>
-                    <div class="node green">Estação 1: Soldagem Robotizada<br><small>(Braços Articulados)</small></div>
-                    <div class="connector arrow-down"></div>
-                    <div class="node yellow">Transporte via AGV<br><small>(Robô Móvel)</small></div>
-                    <div class="connector arrow-down"></div>
-                    <div class="node green">Estação 2: Pintura por Robôs Spray<br><small>(Estufa)</small></div>
-                    <div class="connector arrow-down"></div>
+                    <div class="connector arrow-right" style="margin-left: 25px;"></div>
+                    <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node yellow">Transporte<br>via AGV</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node green">Estação 2:<br>Pintura (Robôs)</div>
+                    <div class="connector arrow-right"></div>
 
-                    <!-- Decisão 2: Horizontal (Visão Computacional) -->
-                    <div class="row">
-                        <div class="col">
-                            <div class="diamond-container">
-                                <div class="diamond yellow"></div>
-                                <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
-                            </div>
-                            <span class="path-label" style="margin-top: 5px;">Sim</span>
+                    <!-- Decisão 2: Horizontal -->
+                    <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                        <div class="diamond-container" style="margin: 0;">
+                            <div class="diamond yellow"></div>
+                            <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
                         </div>
-                        <div class="row-align">
-                            <div class="connector arrow-right"></div>
-                            <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não (Defeito)</span>
-                            <div class="node red">Célula de Retrabalho<br><small>(Solda/Pintura Corretiva)</small></div>
+                        <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
+                        
+                        <!-- Caminho Não (Desce) -->
+                        <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
+                            <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não (Defeito)</span>
+                            <div class="connector arrow-down"></div>
+                            <div class="node red" style="margin-top: 10px;">Célula de Retrabalho</div>
                         </div>
                     </div>
 
-                    <div class="connector arrow-down"></div>
+                    <div class="connector arrow-right" style="margin-left: 25px;"></div>
                     
-                    <!-- Final: Distribuído Horizontalmente -->
-                    <div class="row" style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="node yellow">Teste de Funcionalidade</div>
-                        <div class="connector arrow-right"></div>
-                        <div class="node yellow">Paletização Robotizada<br><small>(Fim de Linha)</small></div>
-                        <div class="connector arrow-right"></div>
-                        <div class="node end">Expedição</div>
-                    </div>
+                    <!-- Final Horizontal -->
+                    <div class="node yellow">Teste de<br>Funcionalidade</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node yellow">Paletização<br>Robotizada</div>
+                    <div class="connector arrow-right"></div>
+                    <div class="node end">Expedição</div>
                 </div>
             </div>
         </div>
