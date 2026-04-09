@@ -41,6 +41,13 @@
             z-index: 1;
             pointer-events: auto;
         }
+        
+        .slide.scrollable {
+            justify-content: flex-start;
+            padding-top: 100px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
 
         .navigation {
             position: fixed;
@@ -83,6 +90,7 @@
             letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .content-box {
@@ -135,6 +143,20 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            transform-style: preserve-3d;
+        }
+        
+        .col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        .row-align {
+            display: flex;
+            align-items: center;
+            position: relative;
             transform-style: preserve-3d;
         }
 
@@ -281,6 +303,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             width: 90%;
             max-width: 800px;
+            flex-shrink: 0;
         }
         .legend-item { display: flex; align-items: center; font-weight: bold; font-size: 0.9rem; }
         .box {
@@ -320,7 +343,7 @@
     </div>
 
     <!-- Lâmina 3: Completo Distribuído -->
-    <div class="slide" style="overflow-y: auto; overflow-x: auto; padding-top: 60px;">
+    <div class="slide scrollable">
         <h2>Linha de Montagem Robotizada (Fluxo Completo)</h2>
         
         <div class="legend">
@@ -329,7 +352,7 @@
             <div class="legend-item"><div class="box red"></div> Retrabalho/Rejeição (Desperdício)</div>
         </div>
 
-        <div class="flowchart-container" style="transform: scale(0.65); padding-bottom: 60px;">
+        <div class="flowchart-container" style="transform: scale(0.65); padding-bottom: 120px;">
             <div class="flowchart">
                 <!-- Topo Vertical -->
                 <div class="node start">Início: Entrada de Chapas</div>
@@ -337,17 +360,17 @@
                 
                 <!-- Decisão 1: Horizontal (Inspeção de Entrada) -->
                 <div class="row">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="col">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
                             <div class="diamond-text dark">Peças no<br>Padrão?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
-                    <div style="display: flex; align-items: center; position: relative;">
+                    <div class="row-align">
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                        <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="col">
                             <div class="node red">Retorno ao Fornecedor</div>
                             <div class="connector arrow-down" style="margin-top: 10px;"></div>
                             <div class="node end">Fim (Descarte)</div>
@@ -365,14 +388,14 @@
 
                 <!-- Decisão 2: Horizontal (Visão Computacional) -->
                 <div class="row">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="col">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
                             <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
-                    <div style="display: flex; align-items: center; position: relative;">
+                    <div class="row-align">
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não (Defeito)</span>
                         <div class="node red">Célula de Retrabalho<br><small>(Solda/Pintura Corretiva)</small></div>
@@ -401,14 +424,14 @@
                 <div class="node start">Entrada de Chapas</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="col">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
                             <div class="diamond-text dark">Peças no<br>Padrão?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
-                    <div style="display: flex; align-items: center; position: relative;">
+                    <div class="row-align">
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
                         <div class="node red">Retorno ao Fornecedor<br><small>(Gargalo na Origem)</small></div>
@@ -430,14 +453,14 @@
                 <div class="node green">Estação 2: Pintura por Robôs Spray</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="col">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
                             <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
-                    <div style="display: flex; align-items: center; position: relative;">
+                    <div class="row-align">
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
                         <div class="node red">Célula de Retrabalho<br><small>(Custo de falha robótica/ferramental)</small></div>
