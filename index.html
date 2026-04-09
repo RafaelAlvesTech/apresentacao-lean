@@ -138,12 +138,13 @@
         .node {
             padding: 10px 15px;
             border: 3px solid #000;
-            font-weight: bold;
+            font-weight: 900; /* Extra bold */
             text-align: center;
             min-width: 150px;
             color: #fff;
             font-size: 0.95rem;
             box-shadow: 4px 4px 0 #000;
+            letter-spacing: 0.05em; /* Increased letter spacing */
         }
 
         .node.green { background-color: var(--valor-color); }
@@ -168,11 +169,12 @@
         .diamond-text {
             position: absolute;
             font-size: 0.85rem;
-            font-weight: bold;
+            font-weight: 900; /* Extra bold */
             color: #000;
             text-align: center;
             z-index: 2;
             width: 110px;
+            letter-spacing: 0.03em; /* Slightly increased for readability */
         }
 
         .connector.arrow-right {
@@ -209,9 +211,11 @@
             color: #fff;
             padding: 3px 8px;
             font-size: 0.9rem;
+            font-weight: 900; /* Extra bold */
             border-radius: 4px;
             margin-bottom: 5px;
             white-space: nowrap;
+            letter-spacing: 0.05em;
         }
 
         .sim-label {
@@ -223,7 +227,9 @@
             color: #fff;
             padding: 2px 6px;
             font-size: 0.8rem;
+            font-weight: 900; /* Extra bold */
             border-radius: 4px;
+            letter-spacing: 0.05em;
         }
 
         .legend {
@@ -234,7 +240,7 @@
             background: #fff;
             margin-bottom: 5px;
         }
-        .legend-item { display: flex; align-items: center; font-size: 0.9rem; font-weight: bold; }
+        .legend-item { display: flex; align-items: center; font-size: 0.9rem; font-weight: 900; letter-spacing: 0.05em; }
         .box { width: 20px; height: 20px; border: 2px solid #000; margin-right: 8px; }
         .box.green { background: var(--valor-color); }
         .box.yellow { background: var(--necessario-color); }
