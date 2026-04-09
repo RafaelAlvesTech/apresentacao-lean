@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação Didática: Manufatura Enxuta na Indústria Automotiva</title>
-    <!-- Fonte amigável para Dislexia -->
+    <title>Manufatura Enxuta - Apresentação Didática</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.min.css">
     <style>
         :root {
@@ -23,44 +22,40 @@
             font-family: var(--font-main);
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.3;
-            letter-spacing: 0.03em;
+            height: 100%;
         }
 
         .presentation {
             width: 100vw;
             height: 100vh;
-            position: relative;
             display: flex;
             flex-direction: column;
         }
 
         .navigation-bar {
-            height: 70px;
+            height: 60px;
             background: #000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
-            z-index: 2000;
+            padding: 0 20px;
+            flex-shrink: 0;
+            z-index: 1000;
             color: #fff;
-            border-bottom: 5px solid var(--valor-color);
+            border-bottom: 4px solid var(--valor-color);
         }
 
         .nav-button {
             background: #fff;
             color: #000;
-            border: 3px solid #000;
-            padding: 8px 18px;
+            border: 2px solid #000;
+            padding: 5px 15px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: var(--font-main);
-            transition: 0.2s;
         }
-
-        .nav-button:hover { background: #ffd700; transform: scale(1.05); }
 
         .slide-container {
             flex: 1;
@@ -76,101 +71,80 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 20px;
             box-sizing: border-box;
             background: var(--bg-color);
+            overflow-y: auto;
         }
 
-        .slide.active {
-            display: flex;
-        }
+        .slide.active { display: flex; }
 
         h1 {
-            font-size: 2.8rem;
-            color: var(--text-color);
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            border-bottom: 5px solid var(--valor-color);
             text-align: center;
-            text-transform: uppercase;
-            margin: 0 0 20px 0;
-            border-bottom: 8px solid var(--valor-color);
-            padding-bottom: 10px;
         }
 
         h2 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            text-align: center;
-            text-transform: uppercase;
-            margin: 0 0 20px 0;
-            background: #f4f4f4;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            background: #f0f0f0;
+            padding: 8px;
+            border: 2px solid #000;
             width: 100%;
-            padding: 12px;
-            border: 3px solid #000;
+            text-align: center;
         }
 
         .content-box {
             background: #fff;
-            border: 4px solid #000;
-            padding: 25px;
-            max-width: 95vw;
+            border: 3px solid #000;
+            padding: 15px;
+            max-width: 900px;
             width: 100%;
-            font-size: 1.4rem;
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+            font-size: 1.2rem;
         }
-
-        .content-box p { margin-bottom: 15px; }
 
         .content-box li {
-            margin-bottom: 15px;
-            padding: 15px;
-            border: 4px solid #ccc;
+            margin-bottom: 8px;
+            padding: 10px;
+            border: 2px solid #ccc;
             list-style: none;
-            position: relative;
         }
 
-        .content-box li.green { border-color: var(--valor-color); background: #f0fff0; }
-        .content-box li.yellow { border-color: var(--necessario-color); border-style: dashed; background: #fffdf0; }
-        .content-box li.red { border-color: var(--desperdicio-color); border-style: double; background: #fff0f0; }
-
+        /* Fluxograma perfeitamente ajustado */
         .flowchart-container {
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
-            transform: scale(0.8);
+            transform: scale(0.7); /* Reduzido para garantir encaixe total */
             transform-origin: center center;
+            margin: 10px 0;
         }
 
         .flowchart {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 130px; /* Aumentado drasticamente para dar espaço aos blocos vermelhos pendurados */
+            gap: 80px; /* Gap reduzido para não cortar embaixo */
         }
 
         .row {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px; /* Espaço horizontal entre elementos */
-        }
-        
-        .col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
+            gap: 20px;
         }
 
         .node {
             padding: 10px 15px;
-            border: 4px solid #000;
+            border: 3px solid #000;
             font-weight: bold;
             text-align: center;
-            min-width: 170px;
+            min-width: 150px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             box-shadow: 4px 4px 0 #000;
-            line-height: 1.2;
         }
 
         .node.green { background-color: var(--valor-color); }
@@ -179,92 +153,98 @@
         .node.start, .node.end { background-color: #333; border-radius: 40px; }
 
         .diamond-container {
-            width: 140px; height: 140px; /* Aumentado para comportar o texto interno */
+            width: 120px; height: 120px;
             display: flex; align-items: center; justify-content: center;
             position: relative;
         }
 
         .diamond {
-            width: 105px; height: 105px; /* Aumentado proporcionalmente */
+            width: 90px; height: 90px;
             background: var(--necessario-color);
-            border: 4px solid #000;
+            border: 3px solid #000;
             transform: rotate(45deg);
             box-shadow: 4px 4px 0 #000;
         }
 
         .diamond-text {
             position: absolute;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: bold;
             color: #000;
             text-align: center;
             z-index: 2;
-            width: 130px; /* Largura ajustada para o texto respirar */
-            line-height: 1.1;
+            width: 110px;
         }
 
-        .connector { background: #000; position: relative; }
-
-        .connector.arrow-right { width: 50px; height: 8px; }
+        .connector.arrow-right {
+            width: 40px; height: 6px;
+            background: #000;
+            position: relative;
+        }
         .connector.arrow-right::after {
-            content: ''; position: absolute; right: -12px; top: -10px;
-            border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 18px solid #000;
+            content: ''; position: absolute; right: -8px; top: -7px;
+            border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 12px solid #000;
         }
-        .connector.arrow-down { width: 8px; height: 50px; }
+        .connector.arrow-down {
+            width: 6px; height: 35px;
+            background: #000;
+            position: relative;
+        }
         .connector.arrow-down::after {
-            content: ''; position: absolute; bottom: -12px; left: -10px;
-            border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 18px solid #000;
+            content: ''; position: absolute; bottom: -8px; left: -7px;
+            border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid #000;
         }
 
         .branch-no {
             position: absolute;
-            top: 115%; /* Empurrado um pouco mais para baixo */
+            top: 105%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 10;
         }
 
         .branch-label {
             background: #000;
             color: #fff;
-            padding: 4px 10px;
+            padding: 3px 8px;
             font-size: 0.9rem;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-bottom: 8px;
+            border-radius: 4px;
+            margin-bottom: 5px;
             white-space: nowrap;
         }
 
         .sim-label {
             position: absolute;
-            top: -45px; /* Subido para não bater na seta */
+            top: -30px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--valor-color);
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            border-radius: 4px;
         }
 
         .legend {
             display: flex;
-            gap: 25px;
-            border: 4px solid #000;
-            padding: 12px;
-            margin-bottom: 15px;
+            gap: 15px;
+            border: 3px solid #000;
+            padding: 10px;
             background: #fff;
+            margin-bottom: 5px;
         }
-        .legend-item { display: flex; align-items: center; font-size: 1.1rem; font-weight: bold; }
-        .box { width: 25px; height: 25px; border: 2px solid #000; margin-right: 10px; }
+        .legend-item { display: flex; align-items: center; font-size: 0.9rem; font-weight: bold; }
+        .box { width: 20px; height: 20px; border: 2px solid #000; margin-right: 8px; }
         .box.green { background: var(--valor-color); }
         .box.yellow { background: var(--necessario-color); }
         .box.red { background: var(--desperdicio-color); }
 
         @media (max-width: 768px) {
             .flowchart-container { transform: scale(0.6); }
-            .row { flex-direction: column; gap: 50px; }
+            .row { flex-direction: column; gap: 40px; }
             .connector.arrow-right { display: none; }
-            .branch-no { position: relative; top: auto; left: auto; transform: none; }
         }
     </style>
 </head>
@@ -273,144 +253,139 @@
 <div class="presentation">
     <div class="navigation-bar">
         <button class="nav-button" id="prev">◀ Voltar</button>
-        <div id="slide-info" style="font-weight: bold; font-size: 1.2rem;">Carregando...</div>
+        <div id="slide-info" style="font-weight: bold;">Carregando...</div>
         <button class="nav-button" id="next">Avançar ▶</button>
     </div>
 
     <div class="slide-container">
-        <!-- Lâmina 1: Introdução -->
+        <!-- Lâmina 1 -->
         <div class="slide active">
-            <h1>Manufatura Enxuta (Lean Manufacturing)</h1>
+            <h1>Manufatura Enxuta Automotiva</h1>
             <div class="content-box" style="text-align: center;">
-                <p style="font-size: 2rem; font-weight: bold; color: var(--valor-color);">Automação Robótica Inteligente</p>
-                <p>Otimizando a produção automotiva através da eliminação de desperdícios e uso de Braços Articulados e Veículos Autônomos (AGVs).</p>
+                <p style="font-size: 1.5rem; color: var(--valor-color); font-weight: bold;">Automação Robótica Inteligente</p>
+                <p>Otimizando a produção através da eliminação de desperdícios.</p>
             </div>
         </div>
 
-        <!-- Lâmina 2: Classificação Lean -->
+        <!-- Lâmina 2 -->
         <div class="slide">
-            <h2>Como Identificar o que Realmente Agrega Valor?</h2>
+            <h2>O que agrega valor ao produto?</h2>
             <div class="content-box">
-                <p>Na filosofia Lean, dividimos todas as atividades em três categorias fundamentais:</p>
                 <ul>
-                    <li class="green">
-                        <strong>Atividades que Criam Valor (Verde):</strong> São aquelas que transformam o produto e pelas quais o cliente está disposto a pagar. Exemplo: Soldagem e Pintura precisa.
-                    </li>
-                    <li class="yellow">
-                        <strong>Necessárias, mas sem Valor Direto (Amarelo):</strong> Atividades exigidas pela tecnologia ou leis, mas que não mudam o produto. Exemplo: Transporte por AGVs e Inspeções.
-                    </li>
-                    <li class="red">
-                        <strong>Desperdício / Perda Pura (Vermelho):</strong> Atividades que consomem recursos e devem ser eliminadas. Exemplo: Peças com defeito e tempo parado para retrabalho.
-                    </li>
+                    <li style="border-left: 10px solid var(--valor-color);"><strong>VALOR:</strong> Atividades que o cliente paga (Soldagem/Pintura).</li>
+                    <li style="border-left: 10px solid var(--necessario-color); border-style: dashed;"><strong>APOIO:</strong> Necessário mas sem valor direto (AGVs/Inspeção).</li>
+                    <li style="border-left: 10px solid var(--desperdicio-color); border-style: double;"><strong>PERDA:</strong> Deve ser eliminado (Defeitos/Retrabalho).</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Lâmina 3: Tecnologia -->
+        <!-- Lâmina 3 -->
         <div class="slide">
-            <h2>A Tecnologia como Ferramenta de Eficiência</h2>
+            <h2>Tecnologias de Eficiência</h2>
             <div class="content-box">
-                <p><strong>Robótica Industrial:</strong> Braços mecânicos realizam tarefas repetitivas com precisão absoluta, garantindo que o trabalho seja "feito certo da primeira vez".</p>
-                <p><strong>AGVs (Automated Guided Vehicles):</strong> Robôs móveis que substituem empilhadeiras manuais, otimizando o fluxo de materiais e reduzindo acidentes e gargalos.</p>
-                <p><strong>Visão Computacional:</strong> Câmeras com IA que inspecionam cada milímetro da peça, identificando erros invisíveis ao olho humano.</p>
+                <p><strong>Robôs:</strong> Precisão total no trabalho (Fazer certo na 1ª vez).</p>
+                <p><strong>AGVs:</strong> Transporte autônomo sem gargalos logísticos.</p>
+                <p><strong>Visão IA:</strong> Inspeção milimétrica para evitar falhas.</p>
             </div>
         </div>
 
-        <!-- Lâmina 4: Fluxo Completo Explicativo -->
+        <!-- Lâmina 4: Fluxo Completo -->
         <div class="slide">
-            <h2>Visão Geral Didática: O Caminho da Produção</h2>
+            <h2>Visão Geral do Fluxo de Fabricação</h2>
             <div class="legend">
-                <div class="legend-item"><div class="box green"></div> Agrega Valor</div>
-                <div class="legend-item"><div class="box yellow"></div> Apoio Necessário</div>
-                <div class="legend-item"><div class="box red"></div> Falha/Perda</div>
+                <div class="legend-item"><div class="box green"></div> Valor</div>
+                <div class="legend-item"><div class="box yellow"></div> Apoio</div>
+                <div class="legend-item"><div class="box red"></div> Perda</div>
             </div>
 
             <div class="flowchart-container">
                 <div class="flowchart">
+                    <!-- Linha 1 -->
                     <div class="row">
-                        <div class="node start">Início:<br>Chegada de Chapas</div>
+                        <div class="node start">Início</div>
                         <div class="connector arrow-right"></div>
                         <div class="col">
                             <div class="diamond-container">
                                 <div class="diamond"></div>
-                                <div class="diamond-text">Material está<br>correto?</div>
+                                <div class="diamond-text">Material<br>Correto?</div>
                                 <div class="branch-no">
-                                    <span class="branch-label" style="background:var(--desperdicio-color)">NÃO (Perda)</span>
-                                    <div class="node red" style="min-width:140px">Rejeição ao<br>Fornecedor</div>
+                                    <span class="branch-label" style="background:var(--desperdicio-color)">NÃO</span>
+                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Rejeição</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col"><span class="branch-label sim-label">SIM</span><div class="connector arrow-right"></div></div>
-                        <div class="node green">Soldagem de<br>Alta Precisão</div>
+                        <div class="col"><span class="sim-label">SIM</span><div class="connector arrow-right"></div></div>
+                        <div class="node green">Soldagem</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node yellow">Transporte<br>Autônomo AGV</div>
+                        <div class="node yellow">AGV</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node green">Pintura<br>Robotizada</div>
+                        <div class="node green">Pintura</div>
                     </div>
 
                     <div class="connector arrow-down"></div>
 
+                    <!-- Linha 2 -->
                     <div class="row">
                         <div class="col">
                             <div class="diamond-container">
                                 <div class="diamond"></div>
-                                <div class="diamond-text">Aprovado na<br>Inspeção IA?</div>
+                                <div class="diamond-text">Visão IA<br>Aprova?</div>
                                 <div class="branch-no">
-                                    <span class="branch-label" style="background:var(--desperdicio-color)">NÃO (Gargalo)</span>
-                                    <div class="node red" style="min-width:140px">Célula de<br>Retrabalho</div>
+                                    <span class="branch-label" style="background:var(--desperdicio-color)">NÃO</span>
+                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Retrabalho</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col"><span class="branch-label sim-label">SIM</span><div class="connector arrow-right"></div></div>
-                        <div class="node yellow">Testes de<br>Segurança</div>
+                        <div class="col"><span class="sim-label">SIM</span><div class="connector arrow-right"></div></div>
+                        <div class="node yellow">Testes</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node yellow">Paletização<br>Final</div>
+                        <div class="node yellow">Paletes</div>
                         <div class="connector arrow-right"></div>
-                        <div class="node end">Expedição ao<br>Cliente Final</div>
+                        <div class="node end">Expedição</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Lâmina 5: Detalhe Soldagem -->
+        <!-- Lâmina 5 -->
         <div class="slide">
-            <h2>Etapa 1: Por que a Soldagem Agrega Valor?</h2>
+            <h2>Etapa 1: Soldagem Robotizada</h2>
             <div class="flowchart-container">
                 <div class="flowchart">
-                    <div class="node start">Entrada de Chapas</div>
+                    <div class="node start">Entrada</div>
                     <div class="connector arrow-down"></div>
                     <div class="row">
                         <div class="col">
                             <div class="diamond-container">
-                                <div class="diamond"></div><div class="diamond-text">Peça sem<br>defeitos?</div>
+                                <div class="diamond"></div><div class="diamond-text">Ok?</div>
                             </div>
                         </div>
                         <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">NÃO</span><div class="connector arrow-right"></div></div>
-                        <div class="node red">Descarte de<br>Material (Perda)</div>
+                        <div class="node red">Sucata</div>
                     </div>
-                    <div class="col"><span class="branch-label" style="background:var(--valor-color)">SIM: Segue para Transformação</span><div class="connector arrow-down"></div></div>
-                    <div class="node green">Soldagem: Robôs criam a estrutura<br>durável que o cliente valoriza.</div>
+                    <div class="col"><span class="sim-label">SIM</span><div class="connector arrow-down"></div></div>
+                    <div class="node green">Soldagem de Precisão</div>
                 </div>
             </div>
         </div>
 
-        <!-- Lâmina 6: Detalhe Qualidade -->
+        <!-- Lâmina 6 -->
         <div class="slide">
-            <h2>Etapa 2: Garantindo a Qualidade com Visão IA</h2>
-            <div class="flowchart-container" style="transform: scale(0.75);">
+            <h2>Etapa 2: Pintura e Qualidade</h2>
+            <div class="flowchart-container" style="transform: scale(0.8);">
                 <div class="flowchart">
-                    <div class="node yellow">AGV entrega peça pintada</div>
+                    <div class="node yellow">Transporte AGV</div>
                     <div class="connector arrow-down"></div>
-                    <div class="node green">Pintura Finalizada</div>
+                    <div class="node green">Pintura</div>
                     <div class="connector arrow-down"></div>
                     <div class="row">
                         <div class="col">
                             <div class="diamond-container">
-                                <div class="diamond"></div><div class="diamond-text">Sensores 3D<br>aprovam?</div>
+                                <div class="diamond"></div><div class="diamond-text">Sensores 3D?</div>
                             </div>
                         </div>
-                        <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">NÃO: Detectada Falha</span><div class="connector arrow-right"></div></div>
-                        <div class="node red">Retrabalho: Correção de<br>falhas evita devoluções.</div>
+                        <div class="col"><span class="branch-label" style="background:var(--desperdicio-color)">FALHA</span><div class="connector arrow-right"></div></div>
+                        <div class="node red">Retrabalho</div>
                     </div>
                 </div>
             </div>
@@ -425,7 +400,7 @@
 
     function updateSlide() {
         slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-        info.innerText = `Etapa ${currentSlide + 1} de ${slides.length}`;
+        info.innerText = `Lâmina ${currentSlide + 1} de ${slides.length}`;
     }
 
     document.getElementById('prev').onclick = () => { if(currentSlide > 0) { currentSlide--; updateSlide(); } };
