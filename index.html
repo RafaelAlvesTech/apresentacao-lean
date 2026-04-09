@@ -345,8 +345,17 @@
                             </div>
                         </div>
                         <div class="col"><span class="sim-label">YES</span><div class="connector arrow-right"></div></div>
-                        <div class="node yellow">Testing</div>
-                        <div class="connector arrow-right"></div>
+                        <div class="col">
+                            <div class="diamond-container">
+                                <div class="diamond"></div>
+                                <div class="diamond-text">Testing<br>Approved?</div>
+                                <div class="branch-no">
+                                    <span class="branch-label" style="background:var(--desperdicio-color)">NO</span>
+                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Rework</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col"><span class="sim-label">YES</span><div class="connector arrow-right"></div></div>
                         <div class="node yellow">Palletizing</div>
                         <div class="connector arrow-right"></div>
                         <div class="node end">Dispatch</div>
@@ -405,8 +414,17 @@
             <div class="flowchart-container">
                 <div class="flowchart">
                     <div class="row">
-                        <div class="node yellow">Safety & Functional<br>Testing</div>
-                        <div class="connector arrow-right"></div>
+                        <div class="col">
+                            <div class="diamond-container">
+                                <div class="diamond"></div>
+                                <div class="diamond-text">Safety<br>Testing?</div>
+                                <div class="branch-no">
+                                    <span class="branch-label" style="background:var(--desperdicio-color)">FAIL</span>
+                                    <div class="node red" style="min-width:120px; font-size:0.8rem">Rework</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col"><span class="sim-label">PASS</span><div class="connector arrow-right"></div></div>
                         <div class="node yellow">Robotic<br>Palletizing</div>
                         <div class="connector arrow-right"></div>
                         <div class="node end">Dispatch to<br>Market</div>
@@ -414,9 +432,9 @@
                 </div>
             </div>
             <div class="content-box" style="margin-top: 30px;">
-                <p><strong>1. Testing:</strong> Final check of brakes, electrical systems, and performance. It is the seal of guarantee that the product is safe.</p>
-                <p><strong>2. Palletizing:</strong> Robots organize loads with millimetric precision, eliminating inventory errors and human fatigue.</p>
-                <p><strong>3. Dispatch:</strong> Lean logistics ensures the product leaves the factory straight to the customer, reducing storage costs.</p>
+                <p><strong>1. Testing:</strong> Decision point to verify brakes and systems. If it fails, it returns to rework.</p>
+                <p><strong>2. Palletizing:</strong> Robots organize loads with precision, eliminating human fatigue.</p>
+                <p><strong>3. Dispatch:</strong> Lean logistics ensures the product leaves straight to the customer.</p>
             </div>
         </div>
     </div>
