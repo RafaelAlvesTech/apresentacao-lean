@@ -343,74 +343,76 @@
     </div>
 
     <!-- Lâmina 3: Completo Distribuído -->
-    <div class="slide scrollable">
-        <h2>Linha de Montagem Robotizada (Fluxo Completo)</h2>
+    <div class="slide">
+        <h2 style="margin-bottom: 0;">Linha de Montagem Robotizada (Fluxo Completo)</h2>
         
-        <div class="legend">
+        <div class="legend" style="margin-top: 10px; margin-bottom: 0; padding: 10px; transform: scale(0.85);">
             <div class="legend-item"><div class="box green"></div> Transformação Robótica (Valor)</div>
             <div class="legend-item"><div class="box yellow"></div> Logística/Inspeção (Necessário)</div>
             <div class="legend-item"><div class="box red"></div> Retrabalho/Rejeição (Desperdício)</div>
         </div>
 
-        <div class="flowchart-container" style="transform: scale(0.65); padding-bottom: 120px;">
-            <div class="flowchart">
-                <!-- Topo Vertical -->
-                <div class="node start">Início: Entrada de Chapas</div>
-                <div class="connector arrow-down"></div>
-                
-                <!-- Decisão 1: Horizontal (Inspeção de Entrada) -->
-                <div class="row">
-                    <div class="col">
-                        <div class="diamond-container">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Peças no<br>Padrão?</div>
-                        </div>
-                        <span class="path-label" style="margin-top: 5px;">Sim</span>
-                    </div>
-                    <div class="row-align">
-                        <div class="connector arrow-right"></div>
-                        <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden;">
+            <div class="flowchart-container" style="transform: scale(0.42);">
+                <div class="flowchart">
+                    <!-- Topo Vertical -->
+                    <div class="node start">Início: Entrada de Chapas</div>
+                    <div class="connector arrow-down"></div>
+                    
+                    <!-- Decisão 1: Horizontal (Inspeção de Entrada) -->
+                    <div class="row">
                         <div class="col">
-                            <div class="node red">Retorno ao Fornecedor</div>
-                            <div class="connector arrow-down" style="margin-top: 10px;"></div>
-                            <div class="node end">Fim (Descarte)</div>
+                            <div class="diamond-container">
+                                <div class="diamond yellow"></div>
+                                <div class="diamond-text dark">Peças no<br>Padrão?</div>
+                            </div>
+                            <span class="path-label" style="margin-top: 5px;">Sim</span>
+                        </div>
+                        <div class="row-align">
+                            <div class="connector arrow-right"></div>
+                            <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
+                            <div class="col">
+                                <div class="node red">Retorno ao Fornecedor</div>
+                                <div class="connector arrow-down" style="margin-top: 10px;"></div>
+                                <div class="node end">Fim (Descarte)</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="connector arrow-down"></div>
-                <div class="node green">Estação 1: Soldagem Robotizada<br><small>(Braços Articulados)</small></div>
-                <div class="connector arrow-down"></div>
-                <div class="node yellow">Transporte via AGV<br><small>(Robô Móvel)</small></div>
-                <div class="connector arrow-down"></div>
-                <div class="node green">Estação 2: Pintura por Robôs Spray<br><small>(Estufa)</small></div>
-                <div class="connector arrow-down"></div>
+                    <div class="connector arrow-down"></div>
+                    <div class="node green">Estação 1: Soldagem Robotizada<br><small>(Braços Articulados)</small></div>
+                    <div class="connector arrow-down"></div>
+                    <div class="node yellow">Transporte via AGV<br><small>(Robô Móvel)</small></div>
+                    <div class="connector arrow-down"></div>
+                    <div class="node green">Estação 2: Pintura por Robôs Spray<br><small>(Estufa)</small></div>
+                    <div class="connector arrow-down"></div>
 
-                <!-- Decisão 2: Horizontal (Visão Computacional) -->
-                <div class="row">
-                    <div class="col">
-                        <div class="diamond-container">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
+                    <!-- Decisão 2: Horizontal (Visão Computacional) -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="diamond-container">
+                                <div class="diamond yellow"></div>
+                                <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
+                            </div>
+                            <span class="path-label" style="margin-top: 5px;">Sim</span>
                         </div>
-                        <span class="path-label" style="margin-top: 5px;">Sim</span>
+                        <div class="row-align">
+                            <div class="connector arrow-right"></div>
+                            <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não (Defeito)</span>
+                            <div class="node red">Célula de Retrabalho<br><small>(Solda/Pintura Corretiva)</small></div>
+                        </div>
                     </div>
-                    <div class="row-align">
+
+                    <div class="connector arrow-down"></div>
+                    
+                    <!-- Final: Distribuído Horizontalmente -->
+                    <div class="row" style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div class="node yellow">Teste de Funcionalidade</div>
                         <div class="connector arrow-right"></div>
-                        <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não (Defeito)</span>
-                        <div class="node red">Célula de Retrabalho<br><small>(Solda/Pintura Corretiva)</small></div>
+                        <div class="node yellow">Paletização Robotizada<br><small>(Fim de Linha)</small></div>
+                        <div class="connector arrow-right"></div>
+                        <div class="node end">Expedição</div>
                     </div>
-                </div>
-
-                <div class="connector arrow-down"></div>
-                
-                <!-- Final: Distribuído Horizontalmente -->
-                <div class="row" style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <div class="node yellow">Teste de Funcionalidade</div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node yellow">Paletização Robotizada<br><small>(Fim de Linha)</small></div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node end">Expedição</div>
                 </div>
             </div>
         </div>
