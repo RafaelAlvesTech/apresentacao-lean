@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação Lean - Manufatura e Fluxogramas</title>
+    <title>Apresentação Lean - Automação Robótica Automotiva</title>
     <style>
         html, body {
             margin: 0;
@@ -297,23 +297,23 @@
 <div class="presentation">
     <!-- Lâmina 1 -->
     <div class="slide active">
-        <h1>Análise de Valor no Fluxograma</h1>
-        <p style="font-size: 1.5rem; color: #666;">Distribuição de Etapas e Identificação de Desperdícios</p>
+        <h1>Manufatura Enxuta Automotiva</h1>
+        <p style="font-size: 1.5rem; color: #666;">Automação Robótica com Braços Articulados e AGVs</p>
     </div>
 
     <!-- Lâmina 2: Princípios -->
     <div class="slide">
-        <h2>O que agrega valor?</h2>
+        <h2>O que agrega valor? (Exemplo Real)</h2>
         <div class="content-box">
             <ul>
                 <li class="green">
-                    <strong style="color: #43a047;">Cria Valor (Verde):</strong> O cliente percebe o benefício e está disposto a pagar. Transforma o produto para atender a necessidade final.
+                    <strong style="color: #43a047;">Cria Valor (Verde):</strong> Processos robóticos de precisão (ex: soldagem robotizada e pintura automotiva) que transformam efetivamente o veículo e garantem alta qualidade.
                 </li>
                 <li class="yellow">
-                    <strong style="color: #fbc02d;">Não Cria Valor, mas é Necessário (Amarelo):</strong> Atividades administrativas, movimentações, cadastros ou processos exigidos pela tecnologia atual. Devem ser minimizados.
+                    <strong style="color: #fbc02d;">Não Cria Valor, mas é Necessário (Amarelo):</strong> Movimentação via AGVs (robôs móveis), inspeções de qualidade por câmeras 3D e armazenamento. Otimizam o fluxo, mas o cliente "não paga por eles" diretamente.
                 </li>
                 <li class="red">
-                    <strong style="color: #e53935;">Não Cria Valor (Vermelho):</strong> Pura perda, retrabalho, rejeição. Atividades que consomem recursos sem agregar nada e frustram o fluxo contínuo.
+                    <strong style="color: #e53935;">Não Cria Valor (Vermelho):</strong> Defeitos detectados na visão computacional que levam as peças para retrabalho manual ou devolução de materiais fora do padrão.
                 </li>
             </ul>
         </div>
@@ -321,48 +321,26 @@
 
     <!-- Lâmina 3: Completo Distribuído -->
     <div class="slide" style="overflow-y: auto; overflow-x: auto; padding-top: 60px;">
-        <h2>Fluxo Completo Distribuído</h2>
+        <h2>Linha de Montagem Robotizada (Fluxo Completo)</h2>
         
         <div class="legend">
-            <div class="legend-item"><div class="box green"></div> Cria Valor</div>
-            <div class="legend-item"><div class="box yellow"></div> Necessário (Não Cria Valor)</div>
-            <div class="legend-item"><div class="box red"></div> Desperdício / Retrabalho</div>
+            <div class="legend-item"><div class="box green"></div> Transformação Robótica (Valor)</div>
+            <div class="legend-item"><div class="box yellow"></div> Logística/Inspeção (Necessário)</div>
+            <div class="legend-item"><div class="box red"></div> Retrabalho/Rejeição (Desperdício)</div>
         </div>
 
         <div class="flowchart-container" style="transform: scale(0.65); padding-bottom: 60px;">
             <div class="flowchart">
                 <!-- Topo Vertical -->
-                <div class="node start">Início</div>
-                <div class="connector arrow-down"></div>
-                <div class="node yellow">Receber pedido</div>
+                <div class="node start">Início: Entrada de Chapas</div>
                 <div class="connector arrow-down"></div>
                 
-                <!-- Decisão 1: Horizontal -->
+                <!-- Decisão 1: Horizontal (Inspeção de Entrada) -->
                 <div class="row">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Cliente<br>cadastrado?</div>
-                        </div>
-                        <span class="path-label" style="margin-top: 5px;">Sim</span>
-                    </div>
-                    <div style="display: flex; align-items: center; position: relative;">
-                        <div class="connector arrow-right"></div>
-                        <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                        <div class="node yellow">Cadastrar cliente</div>
-                    </div>
-                </div>
-
-                <div class="connector arrow-down"></div>
-                <div class="node green">Pedido processado</div>
-                <div class="connector arrow-down"></div>
-
-                <!-- Decisão 2: Horizontal -->
-                <div class="row">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
-                        <div class="diamond-container">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Crédito<br>aprovado?</div>
+                            <div class="diamond-text dark">Peças no<br>Padrão?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
@@ -370,26 +348,46 @@
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
                         <div style="display: flex; flex-direction: column; align-items: center;">
-                            <div class="node red">Envio p/ o cliente:<br>Pedido não aprovado</div>
+                            <div class="node red">Retorno ao Fornecedor</div>
                             <div class="connector arrow-down" style="margin-top: 10px;"></div>
-                            <div class="node end">Fim</div>
+                            <div class="node end">Fim (Descarte)</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="connector arrow-down"></div>
-                <div class="node yellow">Retirar produto do estoque</div>
+                <div class="node green">Estação 1: Soldagem Robotizada<br><small>(Braços Articulados)</small></div>
+                <div class="connector arrow-down"></div>
+                <div class="node yellow">Transporte via AGV<br><small>(Robô Móvel)</small></div>
+                <div class="connector arrow-down"></div>
+                <div class="node green">Estação 2: Pintura por Robôs Spray<br><small>(Estufa)</small></div>
+                <div class="connector arrow-down"></div>
+
+                <!-- Decisão 2: Horizontal (Visão Computacional) -->
+                <div class="row">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="diamond-container">
+                            <div class="diamond yellow"></div>
+                            <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
+                        </div>
+                        <span class="path-label" style="margin-top: 5px;">Sim</span>
+                    </div>
+                    <div style="display: flex; align-items: center; position: relative;">
+                        <div class="connector arrow-right"></div>
+                        <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não (Defeito)</span>
+                        <div class="node red">Célula de Retrabalho<br><small>(Solda/Pintura Corretiva)</small></div>
+                    </div>
+                </div>
+
                 <div class="connector arrow-down"></div>
                 
                 <!-- Final: Distribuído Horizontalmente -->
                 <div class="row" style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <div class="node yellow">Embalar produto</div>
+                    <div class="node yellow">Teste de Funcionalidade</div>
                     <div class="connector arrow-right"></div>
-                    <div class="node yellow">Enviar para a<br>transportadora</div>
+                    <div class="node yellow">Paletização Robotizada<br><small>(Fim de Linha)</small></div>
                     <div class="connector arrow-right"></div>
-                    <div class="node green">Entregar ao cliente</div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node end">Fim</div>
+                    <div class="node end">Expedição</div>
                 </div>
             </div>
         </div>
@@ -397,78 +395,70 @@
 
     <!-- Lâmina 4: Etapa 1 -->
     <div class="slide">
-        <h2>Etapa 1: Recebimento e Cadastro</h2>
+        <h2>Etapa 1: Inspeção de Entrada e Soldagem</h2>
         <div class="flowchart-container" style="transform: scale(0.9);">
             <div class="flowchart">
-                <div class="node start">Início</div>
-                <div class="connector arrow-down"></div>
-                <div class="node yellow">Receber pedido<br><small>(Atividade Administrativa)</small></div>
+                <div class="node start">Entrada de Chapas</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Cliente<br>cadastrado?</div>
+                            <div class="diamond-text dark">Peças no<br>Padrão?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
                     <div style="display: flex; align-items: center; position: relative;">
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                        <div class="node yellow">Cadastrar cliente<br><small>(Necessário)</small></div>
+                        <div class="node red">Retorno ao Fornecedor<br><small>(Gargalo na Origem)</small></div>
                     </div>
                 </div>
                 <div class="connector arrow-down"></div>
-                <div class="node green">Pedido processado<br><small>(Informação Transformada)</small></div>
+                <div class="node green">Estação 1: Soldagem Robotizada<br><small>(Transformação com Precisão)</small></div>
             </div>
         </div>
     </div>
 
     <!-- Lâmina 5: Etapa 2 -->
     <div class="slide">
-        <h2>Etapa 2: Aprovação e Separação</h2>
-        <div class="flowchart-container" style="transform: scale(0.9);">
+        <h2>Etapa 2: Pintura e Inspeção com IA</h2>
+        <div class="flowchart-container" style="transform: scale(0.85);">
             <div class="flowchart">
-                <div class="node green">Pedido processado</div>
+                <div class="node yellow">Transporte via AGV (Robôs autônomos)</div>
+                <div class="connector arrow-down"></div>
+                <div class="node green">Estação 2: Pintura por Robôs Spray</div>
                 <div class="connector arrow-down"></div>
                 <div class="row">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div class="diamond-container">
                             <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Crédito<br>aprovado?</div>
+                            <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
                         </div>
                         <span class="path-label" style="margin-top: 5px;">Sim</span>
                     </div>
                     <div style="display: flex; align-items: center; position: relative;">
                         <div class="connector arrow-right"></div>
                         <span class="path-label" style="position: absolute; top: -25px; left: 15px;">Não</span>
-                        <div style="display: flex; flex-direction: column; align-items: center;">
-                            <div class="node red">Envio p/ o cliente:<br>Pedido não aprovado<br><small>(Desperdício/Perda de Venda)</small></div>
-                            <div class="connector arrow-down" style="margin-top: 10px;"></div>
-                            <div class="node end">Fim</div>
-                        </div>
+                        <div class="node red">Célula de Retrabalho<br><small>(Custo de falha robótica/ferramental)</small></div>
                     </div>
                 </div>
-                <div class="connector arrow-down"></div>
-                <div class="node yellow">Retirar produto do estoque<br><small>(Movimentação)</small></div>
             </div>
         </div>
     </div>
 
     <!-- Lâmina 6: Etapa 3 -->
     <div class="slide">
-        <h2>Etapa 3: Expedição Horizontal</h2>
+        <h2>Etapa 3: Fim de Linha e Expedição</h2>
         <div class="flowchart-container" style="transform: scale(0.9); margin-top: 50px;">
             <div class="row">
-                <div class="node yellow">Retirar produto do estoque</div>
+                <div class="node yellow">Carroceria finalizada</div>
                 <div class="connector arrow-right"></div>
-                <div class="node yellow">Embalar produto<br><small>(Proteção necessária)</small></div>
+                <div class="node yellow">Teste Funcional<br><small>(Necessário para liberação)</small></div>
                 <div class="connector arrow-right"></div>
-                <div class="node yellow">Enviar para transportadora<br><small>(Transporte)</small></div>
+                <div class="node yellow">Paletização Robotizada<br><small>(Otimização de Espaço/Ergonomia)</small></div>
                 <div class="connector arrow-right"></div>
-                <div class="node green">Entregar ao cliente<br><small>(Valor Percebido!)</small></div>
-                <div class="connector arrow-right"></div>
-                <div class="node end">Fim</div>
+                <div class="node end">Expedição</div>
             </div>
         </div>
     </div>
