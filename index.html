@@ -369,62 +369,63 @@
         </div>
 
         <div style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; overflow: hidden; padding-bottom: 80px;">
-            <div class="flowchart-container" style="transform: scale(0.38); transform-origin: center;">
-                <div class="row" style="align-items: center; gap: 15px;">
-                    <!-- Início Horizontal -->
-                    <div class="node start">Início:<br>Entrada de Chapas</div>
-                    <div class="connector arrow-right"></div>
-                    
-                    <!-- Decisão 1: Horizontal -->
-                    <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
-                        <div class="diamond-container" style="margin: 0;">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Peças no<br>Padrão?</div>
-                        </div>
-                        <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
+            <div class="flowchart-container" style="transform: scale(0.65); transform-origin: center;">
+                <div class="flowchart" style="gap: 30px;">
+                    <!-- Row 1 Horizontal -->
+                    <div class="row" style="align-items: center; gap: 15px;">
+                        <div class="node start">Início:<br>Entrada de Chapas</div>
+                        <div class="connector arrow-right"></div>
                         
-                        <!-- Caminho Não (Desce) -->
-                        <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
-                            <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não</span>
-                            <div class="connector arrow-down"></div>
-                            <div class="node red" style="margin-top: 10px;">Retorno ao Fornecedor</div>
-                            <div class="connector arrow-down" style="margin-top: 10px;"></div>
-                            <div class="node end" style="margin-top: 10px;">Fim (Descarte)</div>
+                        <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                            <div class="diamond-container" style="margin: 0;">
+                                <div class="diamond yellow"></div>
+                                <div class="diamond-text dark">Peças no<br>Padrão?</div>
+                            </div>
+                            <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
+                            
+                            <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
+                                <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não</span>
+                                <div class="connector arrow-down"></div>
+                                <div class="node red" style="margin-top: 10px;">Retorno ao Fornecedor</div>
+                                <div class="connector arrow-down" style="margin-top: 10px;"></div>
+                                <div class="node end" style="margin-top: 10px;">Fim (Descarte)</div>
+                            </div>
                         </div>
+
+                        <div class="connector arrow-right" style="margin-left: 25px;"></div>
+                        <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
+                        <div class="connector arrow-right"></div>
+                        <div class="node yellow">Transporte<br>via AGV</div>
+                        <div class="connector arrow-right"></div>
+                        <div class="node green">Estação 2:<br>Pintura (Robôs)</div>
                     </div>
 
-                    <div class="connector arrow-right" style="margin-left: 25px;"></div>
-                    <div class="node green">Estação 1:<br>Soldagem Robotizada</div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node yellow">Transporte<br>via AGV</div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node green">Estação 2:<br>Pintura (Robôs)</div>
-                    <div class="connector arrow-right"></div>
+                    <!-- Vertical Connection -->
+                    <div class="connector arrow-down" style="height: 60px; margin: 10px 0;"></div>
 
-                    <!-- Decisão 2: Horizontal -->
-                    <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
-                        <div class="diamond-container" style="margin: 0;">
-                            <div class="diamond yellow"></div>
-                            <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
+                    <!-- Row 2 Horizontal -->
+                    <div class="row" style="align-items: center; gap: 15px; background: rgba(255,255,255,0.8); padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                            <div class="diamond-container" style="margin: 0;">
+                                <div class="diamond yellow"></div>
+                                <div class="diamond-text dark">Aprova na<br>Visão 3D?</div>
+                            </div>
+                            <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
+                            
+                            <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
+                                <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não (Defeito)</span>
+                                <div class="connector arrow-down"></div>
+                                <div class="node red" style="margin-top: 10px;">Célula de Retrabalho</div>
+                            </div>
                         </div>
-                        <span class="path-label" style="position: absolute; right: -40px; top: 55px; z-index: 10;">Sim</span>
-                        
-                        <!-- Caminho Não (Desce) -->
-                        <div style="position: absolute; top: 140px; display: flex; flex-direction: column; align-items: center; transform-style: preserve-3d;">
-                            <span class="path-label" style="position: absolute; top: 10px; left: 20px; z-index: 10;">Não (Defeito)</span>
-                            <div class="connector arrow-down"></div>
-                            <div class="node red" style="margin-top: 10px;">Célula de Retrabalho</div>
-                        </div>
+
+                        <div class="connector arrow-right" style="margin-left: 25px;"></div>
+                        <div class="node yellow">Teste de<br>Funcionalidade</div>
+                        <div class="connector arrow-right"></div>
+                        <div class="node yellow">Paletização<br>Robotizada</div>
+                        <div class="connector arrow-right"></div>
+                        <div class="node end">Expedição</div>
                     </div>
-
-                    <div class="connector arrow-right" style="margin-left: 25px;"></div>
-                    
-                    <!-- Final Horizontal -->
-                    <div class="node yellow">Teste de<br>Funcionalidade</div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node yellow">Paletização<br>Robotizada</div>
-                    <div class="connector arrow-right"></div>
-                    <div class="node end">Expedição</div>
                 </div>
             </div>
         </div>
